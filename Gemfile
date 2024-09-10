@@ -74,3 +74,6 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'devise'
+gem 'image_processing'
