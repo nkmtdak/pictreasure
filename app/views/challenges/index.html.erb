@@ -1,10 +1,12 @@
-<h1>Challenges</h1>
+<div class="challenges-container">
+  <h1>Challenges</h1>
 
-<% @challenges.each do |challenge| %>
-  <div>
-    <h2><%= link_to challenge.title, challenge_path(challenge) %></h2>
-    <p><%= challenge.description %></p>
-  </div>
-<% end %>
+  <% @challenges.each do |challenge| %>
+    <div class="challenge-card">
+      <h2><%= link_to challenge.title, challenge_path(challenge) %></h2>
+      <p><%= challenge.description %></p>
+    </div>
+  <% end %>
 
-<%= link_to 'New Challenge', new_challenge_path %>
+  <%= link_to 'New Challenge', new_challenge_path, class: 'new-challenge-btn' %>
+</div>
