@@ -1,2 +1,12 @@
-<h1>Challenges#show</h1>
-<p>Find me in app/views/challenges/show.html.erb</p>
+<h1><%= @challenge.title %></h1>
+<p><%= @challenge.description %></p>
+
+<h2>Photos</h2>
+<% @photos.each do |photo| %>
+  <div>
+    <h3><%= photo.title %></h3>
+    <%= image_tag photo.image if photo.image.attached? %>
+  </div>
+<% end %>
+
+<%= link_to 'Upload Photo', new_challenge_photo_path(@challenge) %>
