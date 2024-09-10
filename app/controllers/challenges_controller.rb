@@ -4,10 +4,13 @@ class ChallengesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @challenges = Challenge.page(params[:page]).per(10)
+    @challenges = Challenge.all
+    @challenges = Challenge.includes(:photos).all
   end
 
   def show
+    @challenge = Challenge.find(params[:id])
+    @photos = @challenge.photos
   end
 
   def new

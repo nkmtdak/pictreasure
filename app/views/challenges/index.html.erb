@@ -3,6 +3,11 @@
 
   <% @challenges.each do |challenge| %>
     <div class="challenge-card">
+      <% if challenge.photos.any? %>
+        <%= image_tag challenge.photos.first.image, class: "challenge-thumbnail" if challenge.photos.first.image.attached? %>
+      <% else %>
+        <div class="no-image">No Image Available</div>
+      <% end %>
       <h2><%= link_to challenge.title, challenge_path(challenge) %></h2>
       <p><%= challenge.description %></p>
     </div>
