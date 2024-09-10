@@ -3,13 +3,13 @@
     <nav>
       <%= link_to 'Pictreasure', root_path, class: 'logo' %>
       <ul class="nav-links">
-        <li><%= link_to 'チャレンジ一覧', challenges_path %></li>
         <% if user_signed_in? %>
-          <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
-          <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn-logout' %></li>
+          <li><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-button' %></li>
+          <li><%= link_to 'プロフィール編集', edit_user_registration_path, class: 'nav-button' %></li>
+          <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-button btn-logout' %></li>
         <% else %>
-          <li><%= link_to '新規登録', new_user_registration_path %></li>
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-button btn-signup' %></li>
+          <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-button btn-login' %></li>
         <% end %>
       </ul>
     </nav>
