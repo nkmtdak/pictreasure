@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>Pictreasure</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,15 +12,32 @@
   </head>
 
   <body>
-  <nav>
-  <% if user_signed_in? %>
-    <%= link_to 'Edit profile', edit_user_registration_path %>
-    <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <%= link_to 'Login', new_user_session_path %>
-  <% end %>
-</nav>
-    <%= yield %>
+    <header>
+      <nav>
+        <%= link_to 'Pictreasure', root_path, class: 'logo' %>
+        <ul class="nav-links">
+          <% if user_signed_in? %>
+            <li><%= link_to 'チャレンジ一覧', challenges_path %></li>
+            <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
+            <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn-logout' %></li>
+          <% else %>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer>
+      <p>&copy; <%= Time.current.year %> Pictreasure. All rights reserved.</p>
+    </footer>
   </body>
 </html>

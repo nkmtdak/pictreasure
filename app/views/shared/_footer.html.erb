@@ -1,0 +1,13 @@
+<!-- app/views/shared/_footer.html.erb -->
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <%= Time.current.year %> Pictreasure. All rights reserved.</p>
+    <nav class="footer-nav">
+      <ul>
+        <li><%= link_to 'プライバシーポリシー', privacy_policy_path %></li>
+        <li><%= link_to '利用規約', terms_of_service_path %></li>
+        <li><%= link_to 'お問い合わせ', contact_path %></li>
+      </ul>
+    </nav>
+  </div>
+</footer>

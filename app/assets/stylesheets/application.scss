@@ -1,72 +1,72 @@
-@use 'colors';
-@use 'reset';
+@import 'colors';
+@import 'reset';
 
 .challenges-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: colors.$vitamin-yellow;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $light-color;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba($dark-color, 0.1);
+}
+
+h1 {
+  color: $accent-color;
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.challenge-card {
+  background-color: $white-color;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba($dark-color, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba($dark-color, 0.15);
   }
-  
-  h1 {
-    color: colors.$vitamin-purple;
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px colors.$vitamin-orange;
-  }
-  
-  .challenge-card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  
-    &:hover {
-      transform: translateY(-5px);
-    }
-  
-    h2 {
-      color: colors.$vitamin-blue;
-      margin-bottom: 10px;
-  
-      a {
-        text-decoration: none;
-        color: inherit;
-        transition: color 0.3s ease;
-  
-        &:hover {
-          color: colors.$vitamin-green;
-        }
+
+  h2 {
+    color: $dark-color;
+    margin-bottom: 10px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $accent-color;
       }
     }
-  
-    p {
-      color: #333;
-      font-size: 1.1em;
-      line-height: 1.5;
-    }
   }
-  
-  .new-challenge-btn {
-    display: block;
-    width: 200px;
-    margin: 30px auto 0;
-    padding: 10px 20px;
-    background-color: colors.$vitamin-green;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.2em;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  
-    &:hover {
-      background-color: darken(colors.$vitamin-green, 10%);
-      transform: scale(1.05);
-    }
+
+  p {
+    color: $dark-color;
+    font-size: 1.1em;
+    line-height: 1.5;
   }
+}
+
+.new-challenge-btn {
+  display: block;
+  width: 200px;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  background-color: $primary-color;
+  color: $dark-color;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.05);
+  }
+}

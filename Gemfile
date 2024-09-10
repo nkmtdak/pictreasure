@@ -77,3 +77,4 @@ end
 
 gem 'devise'
 gem 'image_processing'
+gem 'sassc-rails', '~> 2.1'
