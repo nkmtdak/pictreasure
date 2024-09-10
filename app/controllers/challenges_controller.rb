@@ -2,10 +2,10 @@ class ChallengesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
-    @challenges = Challenge.all
-    @challenges = Challenge.includes(:photos).all
+    @challenges = Challenge.includes(:photos, :user).all
   end
 
   def show
@@ -48,6 +48,8 @@ class ChallengesController < ApplicationController
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to challenges_path, alert: 'Challenge not found.'
   end
   
   def ensure_correct_user
@@ -57,6 +59,13 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:title, :description)
+    params.require(:challenge).permit(:title, :description, :thumbnail)
+  end
+
+  def authorize_user
+    unless current_user && (current_user.admin? || @challenge.user == current_user)
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to challenges_path
+    end
   end
 end

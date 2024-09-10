@@ -1,0 +1,99 @@
+<h1>Edit Challenge</h1>
+
+<%= form_with(model: @challenge, local: true) do |form| %>
+  <% if @challenge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@challenge.errors.count, "error") %> prohibited this challenge from being saved:</h2>
+      <ul>
+        <% @challenge.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <h2>Thumbnail Photo</h2>
+  <div class="field">
+    <% if @challenge.thumbnail.attached? %>
+      <%= image_tag @challenge.thumbnail.variant(resize: "100x100"), alt: "Thumbnail" %>
+      <p>Current Thumbnail</p>
+    <% end %>
+    <%= form.label :thumbnail, "Change Thumbnail Photo" %>
+    <%= form.file_field :thumbnail %>
+  </div>
+
+  <h2>Challenge Photo</h2>
+  <div class="field">
+    <% if @challenge.image.attached? %>
+      <%= image_tag @challenge.image.variant(resize: "100x100"), alt: "Challenge Photo" %>
+      <p>Current Challenge Photo</p>
+    <% end %>
+    <p>This photo cannot be changed.</p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Challenge' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @challenge %> |
+<%= link_to 'Back', challenges_path %><h1>Edit Challenge</h1>
+
+<%= form_with(model: @challenge, local: true) do |form| %>
+  <% if @challenge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@challenge.errors.count, "error") %> prohibited this challenge from being saved:</h2>
+      <ul>
+        <% @challenge.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <h2>Thumbnail Photo</h2>
+  <div class="field">
+    <% if @challenge.thumbnail.attached? %>
+      <%= image_tag @challenge.thumbnail.variant(resize: "100x100"), alt: "Thumbnail" %>
+      <p>Current Thumbnail</p>
+    <% end %>
+    <%= form.label :thumbnail, "Change Thumbnail Photo" %>
+    <%= form.file_field :thumbnail %>
+  </div>
+
+  <h2>Challenge Photo</h2>
+  <div class="field">
+    <% if @challenge.image.attached? %>
+      <%= image_tag @challenge.image.variant(resize: "100x100"), alt: "Challenge Photo" %>
+      <p>Current Challenge Photo</p>
+    <% end %>
+    <p>This photo cannot be changed.</p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Challenge' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @challenge %> |
+<%= link_to 'Back', challenges_path %>
