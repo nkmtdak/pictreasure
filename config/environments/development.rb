@@ -56,6 +56,22 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # 既存のデバッグ設定
+  config.log_level = :debug
+
+  # 新しく追加したデバッグ設定
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger.formatter = proc { |severity, datetime, progname, msg|
+    "#{datetime}: #{severity} - #{msg}\n"
+  }
+
+  # Active Storageのログを詳細に
+  config.active_storage.logger = ActiveSupport::Logger.new(STDOUT)
+
+  # データベースのエラーをより詳細に表示
+  config.active_record.verbose_query_logs = true
+  config.active_record.logger = ActiveSupport::Logger.new(STDOUT)
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

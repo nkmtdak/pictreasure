@@ -80,3 +80,4 @@ gem 'sassc-rails', '~> 2.1'
 gem 'image_processing'
 gem 'phashion'
 gem 'mini_magick'
+gem "ruby-vips"
