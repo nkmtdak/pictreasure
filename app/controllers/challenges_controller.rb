@@ -10,7 +10,7 @@ class ChallengesController < ApplicationController
 
   def show
     @photos = @challenge.photos
-    @latest_similarity = @photos.order(created_at: :desc).first&.similarity
+    @latest_similarity = @photos.order(created_at: :desc).first&.similarity if @photos.present?
   end
 
   def new

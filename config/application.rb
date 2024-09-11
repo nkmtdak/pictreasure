@@ -8,6 +8,7 @@ module Pictreasure
   class Application < Rails::Application
 
     config.load_defaults 7.0
+    config.active_job.queue_adapter = :async
 
     # Sassの設定を追加
     config.sass.load_paths << Rails.root.join('app', 'assets', 'stylesheets')
