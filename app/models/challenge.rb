@@ -12,4 +12,8 @@ class Challenge < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
+  def cleared?
+    cleared
+  end
+  
 end

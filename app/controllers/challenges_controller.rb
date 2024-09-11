@@ -5,12 +5,12 @@ class ChallengesController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
-    @challenges = Challenge.includes(:photos, :user).all
+    @challenges = Challenge.includes(:photos, :user, image_attachment: :blob).all
   end
 
   def show
-    @challenge = Challenge.find(params[:id])
     @photos = @challenge.photos
+    @latest_similarity = @photos.order(created_at: :desc).first&.similarity
   end
 
   def new
@@ -20,34 +20,28 @@ class ChallengesController < ApplicationController
   def create
     @challenge = current_user.challenges.build(challenge_params)
     if @challenge.save
-      redirect_to @challenge, notice: 'Challenge was successfully created.'
+      redirect_to @challenge, notice: 'チャレンジが正常に作成されました。'
     else
-      flash.now[:alert] = 'There was an error creating the challenge.'
       render :new
     end
   end
 
-  def edit
-  end
-  
   def update
     if @challenge.update(challenge_params)
-      redirect_to @challenge, notice: 'Challenge was successfully updated.'
+      redirect_to @challenge, notice: 'チャレンジが正常に更新されました。'
     else
-      flash.now[:alert] = 'There was an error updating the challenge.'
       render :edit
     end
-  end
-  
-  def destroy
-    @challenge.destroy
-    redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end
 
   private
 
+  def challenge_params
+    params.require(:challenge).permit(:title, :description, :image, :thumbnail, :theme_image)
+  end
+
   def set_challenge
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.includes(:photos, :user, image_attachment: :blob).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to challenges_path, alert: 'Challenge not found.'
   end
@@ -57,9 +51,12 @@ class ChallengesController < ApplicationController
       redirect_to challenges_path, alert: 'You are not authorized to perform this action.'
     end
   end
-
-  def challenge_params
-    params.require(:challenge).permit(:title, :description, :thumbnail)
+  
+  def calculate_similarity(challenge, photo)
+    challenge_hash = challenge.calculate_image_hash
+    photo_hash = photo.calculate_image_hash
+    hamming_distance = (challenge_hash ^ photo_hash).to_s(2).count("1")
+    1 - (hamming_distance.to_f / 64)
   end
 
   def authorize_user
