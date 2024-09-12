@@ -22,8 +22,13 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Create Challenge' %>
   </div>
 <% end %>
 

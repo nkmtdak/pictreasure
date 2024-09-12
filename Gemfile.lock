@@ -160,6 +160,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.8)
+    phashion (1.2.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -277,10 +278,13 @@ DEPENDENCIES
   image_processing
   importmap-rails
   jbuilder
+  mini_magick
   mysql2 (~> 0.5)
   pg
+  phashion
   puma (~> 5.0)
   rails (~> 7.0.0)
+  ruby-vips
   sassc-rails (~> 2.1)
   selenium-webdriver
   sprockets-rails

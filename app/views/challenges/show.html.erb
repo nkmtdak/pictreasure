@@ -1,12 +1,139 @@
-<h1><%= @challenge.title %></h1>
-<p><%= @challenge.description %></p>
+<div class="challenge-container">
+  <header class="challenge-header">
+    <section class="challenge-status">
+      <% if @challenge.cleared? %>
+        <div class="alert alert-success">
+          <h2>チャレンジクリア！</h2>
+          <p>おめでとうございます！このチャレンジを見事にクリアしました。</p>
+        </div>
+      <% else %>
+        <div class="alert alert-info">
+          <h2>チャレンジ進行中</h2>
+          <p>頑張ってください！チャレンジに合った写真をアップロードしてください。</p>
+        </div>
+      <% end %>
+    </section>
 
-<h2>Photos</h2>
-<% @photos.each do |photo| %>
-  <div>
-    <h3><%= photo.title %></h3>
-    <%= image_tag photo.image if photo.image.attached? %>
+    <% if @latest_similarity %>
+      <div class="similarity-info">
+        <h3>最新の試行の類似度: <%= (@latest_similarity * 100).round(2) %>%</h3>
+        <p>チャレンジをクリアするには、少なくとも70%の類似度が必要です。</p>
+      </div>
+    <% end %>
+
+    <h1 class="challenge-title"><%= @challenge.title %></h1>
+    <p class="challenge-description"><%= @challenge.description %></p>
+
+    <!-- お題の写真表示 -->
+    <div class="challenge-image">
+      <h3>お題の写真</h3>
+      <%= image_tag @challenge.image, class: 'challenge-photo' if @challenge.image.attached? %>
+    </div>
+
+    <% if current_user && (current_user.admin? || @challenge.user == current_user) %>
+      <div class="challenge-actions">
+        <%= link_to 'チャレンジ編集', edit_challenge_path(@challenge), class: 'btn btn-primary' %>
+        <%= link_to 'チャレンジ削除', challenge_path(@challenge), method: :delete, 
+            data: { confirm: 'このチャレンジを削除してもよろしいですか？' }, 
+            class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </header>
+
+  <section class="photo-upload-section">
+    <h2>写真をアップロード</h2>
+    <%= form_with(model: [@challenge, Photo.new], local: false, html: { id: 'photo-upload-form' }) do |form| %>
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image, direct_upload: true, id: 'photo-upload-input', accept: 'image/*' %>
+      </div>
+
+      <%= form.submit 'アップロード', class: 'btn btn-success', id: 'photo-upload-submit' %>
+    <% end %>
+  </section>
+
+  <div id="upload-result"></div>
+  <div id="similarity-result"></div>
+
+  <div class="photo-grid">
+    <!-- 既存の写真がここに表示されます -->
   </div>
-<% end %>
 
-<%= link_to 'Upload Photo', new_challenge_photo_path(@challenge) %>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('photo-upload-form');
+    const fileInput = document.getElementById('photo-upload-input');
+    const uploadResult = document.getElementById('upload-result');
+    const similarityResult = document.getElementById('similarity-result');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      uploadResult.innerHTML = '<p>アップロード中...</p>';
+      similarityResult.innerHTML = '';
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRF-Token': csrfToken
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        if (data.success) {
+          uploadResult.innerHTML = `
+            <div class="alert alert-success">
+              <h3>アップロード成功</h3>
+            </div>
+          `;
+          return fetch('<%= similarity_check_challenge_photos_path(@challenge) %>', {
+            method: 'POST',
+            body: JSON.stringify({ photo_id: data.photo.id }),
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': csrfToken
+            }
+          });
+        } else {
+          throw new Error('アップロードに失敗しました');
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        similarityResult.innerHTML = `
+          <p>類似度: ${(data.similarity * 100).toFixed(2)}%</p>
+          ${data.cleared ? '<h2>チャレンジクリア！おめでとうございます！</h2>' : '<p>まだクリア条件を満たしていません。</p>'}
+        `;
+        updatePhotoGrid(data.photo);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        uploadResult.innerHTML = `<div class="alert alert-danger">エラーが発生しました: ${error.message}</div>`;
+      });
+    });
+
+    function updatePhotoGrid(photo) {
+      const photoGrid = document.querySelector('.photo-grid');
+      if (photoGrid) {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        photoItem.innerHTML = `
+          <img src="${photo.image_url}" class="photo-image" alt="Uploaded photo">
+          <p class="photo-similarity">類似度: ${(photo.similarity * 100).toFixed(2)}%</p>
+        `;
+        photoGrid.insertBefore(photoItem, photoGrid.firstChild);
+      }
+    }
+  });
+  </script>
+</div>

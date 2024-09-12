@@ -1,17 +1,15 @@
 // Chrome向けリセットSCSS
 
-// ボックスサイジングをborder-boxに設定
+// 全体のリセット
 *, *::before, *::after {
     box-sizing: border-box;
   }
   
-  // マージンとパディングをリセット
   body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0;
     padding: 0;
   }
   
-  // ボディのデフォルトスタイル
   body {
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -19,28 +17,23 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  // リストスタイルの削除
   ol, ul {
     list-style: none;
   }
   
-  // イメージとフォームの処理
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
   }
   
-  // フォーム要素の継承
   input, button, textarea, select {
     font: inherit;
   }
   
-  // テキストのオーバーフロー処理
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
   }
   
-  // Chromeの自動入力背景色の削除
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -54,13 +47,11 @@
     transition: background-color 5000s ease-in-out 0s;
   }
   
-  // Chromeのフォーカスアウトラインのカスタマイズ
   :focus {
     outline: 2px solid dodgerblue;
     outline-offset: 2px;
   }
   
-  // Chromeのスクロールバーのカスタマイズ
   ::-webkit-scrollbar {
     width: 10px;
   }
