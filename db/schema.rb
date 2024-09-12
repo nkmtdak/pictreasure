@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_11_095822) do
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2024_09_12_055929) do
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_11_095822) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,23 +33,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_11_095822) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "challenges", charset: "utf8mb4", force: :cascade do |t|
+  create_table "challenges", charset: "utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.bigint "user_id", null: false
+    t.boolean "cleared", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "cleared", default: false
     t.index ["user_id"], name: "index_challenges_on_user_id"
   end
 
-  create_table "photos", charset: "utf8mb4", force: :cascade do |t|
+  create_table "photos", charset: "utf8", force: :cascade do |t|
     t.bigint "challenge_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_11_095822) do
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", default: "", null: false
     t.string "password_digest"
@@ -67,9 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_11_095822) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "encrypted_password", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "encrypted_password", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -1,7 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
@@ -26,6 +25,9 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'チャレンジが正常に更新されました。'
@@ -34,10 +36,14 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def destroy
+    @challenge.destroy
+    redirect_to challenges_path, notice: 'チャレンジが正常に削除されました。'
+  end
+
   def start
     @challenge = YAML.load_file(Rails.root.join('config', 'challenges.yml'))['challenges'].sample
   end
-end
 
   private
 
@@ -50,24 +56,18 @@ end
   rescue ActiveRecord::RecordNotFound
     redirect_to challenges_path, alert: 'Challenge not found.'
   end
-  
-  def ensure_correct_user
-    unless @challenge.user == current_user
-      redirect_to challenges_path, alert: 'You are not authorized to perform this action.'
-    end
+
+  def authorize_user
+    return if current_user && (current_user.admin? || @challenge.user == current_user)
+
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to challenges_path
   end
-  
+
   def calculate_similarity(challenge, photo)
     challenge_hash = challenge.calculate_image_hash
     photo_hash = photo.calculate_image_hash
-    hamming_distance = (challenge_hash ^ photo_hash).to_s(2).count("1")
+    hamming_distance = (challenge_hash ^ photo_hash).to_s(2).count('1')
     1 - (hamming_distance.to_f / 64)
-  end
-
-  def authorize_user
-    unless current_user && (current_user.admin? || @challenge.user == current_user)
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to challenges_path
-    end
   end
 end

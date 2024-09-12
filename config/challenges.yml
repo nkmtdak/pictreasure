@@ -1,9 +1,9 @@
 challenges:
   - id: 1
     filename: shibuya1.jpg
-    title: "渋谷TSUTAYA"
+    title: "テストコース"
     difficulty: 2
   - id: 2
     filename: shibuya2.jpg
-    title: "忠犬ハチ公象"
+    title: "テストコース"
     difficulty: 3

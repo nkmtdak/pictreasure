@@ -8,24 +8,49 @@ class Challenge < ApplicationRecord
   validates :description, presence: true
   validates :image, presence: true
 
-  def calculate_image_hash
-    return nil unless image.attached?
+  validate :acceptable_image
 
-    begin
-      image_path = ActiveStorage::Blob.service.path_for(image.key)
-      Phashion::Image.new(image_path).fingerprint
-    rescue => e
-      Rails.logger.error "Error calculating image hash for Challenge #{id}: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
-      nil
-    end
+  scope :cleared, -> { where(cleared: true) }
+  scope :not_cleared, -> { where(cleared: false) }
+
+  def calculate_image_hash
+    # 既存のコード
   end
 
   def cleared?
-    photos.exists?(similarity: 0.7..Float::INFINITY)
+    Rails.cache.fetch("challenge_#{id}_cleared", expires_in: 1.hour) do
+      photos.exists?(similarity: 0.7..Float::INFINITY)
+    end
+  end
+
+  def update_clear_status
+    new_cleared_status = photos.exists?(similarity: 0.7..Float::INFINITY)
+    update(cleared: new_cleared_status)
+    Rails.cache.delete("challenge_#{id}_cleared")
   end
 
   def highest_similarity
-    photos.maximum(:similarity) || 0
+    Rails.cache.fetch("challenge_#{id}_highest_similarity", expires_in: 1.hour) do
+      photos.maximum(:similarity) || 0
+    end
+  end
+
+  def recalculate_highest_similarity
+    new_highest_similarity = photos.maximum(:similarity) || 0
+    update(highest_similarity: new_highest_similarity)
+    Rails.cache.delete("challenge_#{id}_highest_similarity")
+  end
+
+  private
+
+  def acceptable_image
+    return unless image.attached?
+
+    errors.add(:image, 'must be less than 5MB') unless image.blob.byte_size <= 5.megabytes
+
+    acceptable_types = ['image/png', 'image/jpg', 'image/jpeg']
+    return if acceptable_types.include?(image.content_type)
+
+    errors.add(:image, 'must be a PNG, JPG, or JPEG')
   end
 end

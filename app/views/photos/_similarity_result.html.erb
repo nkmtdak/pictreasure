@@ -1,0 +1,8 @@
+<div id="similarity_result">
+  <p>類似度: <%= (similarity * 100).round(2) %>%</p>
+  <% if cleared %>
+    <h3>チャレンジクリア！おめでとうございます！</h3>
+  <% else %>
+    <p>まだクリア条件を満たしていません。</p>
+  <% end %>
+</div>

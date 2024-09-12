@@ -8,17 +8,29 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = @challenge.photos.build(photo_params)
-    photo.user = current_user
-    process_photo(photo, save: true)
+    @photo = @challenge.photos.build(photo_params)
+    @photo.user = current_user
+  
+    if @photo.save
+      render json: { 
+        success: true, 
+        photo: {
+          id: @photo.id,
+          image_url: url_for(@photo.image),
+          similarity: @photo.similarity
+        }
+      }, status: :created
+    else
+      render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
-  
+
   def set_challenge
     @challenge = Challenge.find(params[:challenge_id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: "チャレンジが見つかりません" }, status: :not_found
+    render json: { error: 'チャレンジが見つかりません' }, status: :not_found
   end
 
   def photo_params
@@ -26,28 +38,40 @@ class PhotosController < ApplicationController
   end
 
   def process_photo(photo, save:)
+    Rails.logger.info "Processing photo for challenge: #{@challenge.id}, Save: #{save}"
+
     if save && !photo.save
-      render json: { success: false, error: photo.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      error_message = photo.errors.full_messages.join(', ')
+      Rails.logger.error "Failed to save photo: #{error_message}"
+      render json: { success: false, error: error_message }, status: :unprocessable_entity
       return
     end
 
     similarity = photo.calculate_similarity
-    photo.update(similarity: similarity) if save
+    photo.update(similarity:) if save
     cleared = similarity >= 0.7
+
+    image_url = if photo.image.attached?
+                  url_for(photo.image)
+                else
+                  '/images/default-photo.jpg' # デフォルト画像のパスを指定
+                end
+
+    Rails.logger.info "Photo processed successfully. Similarity: #{similarity}, Cleared: #{cleared}"
 
     render json: {
       success: true,
-      similarity: similarity,
-      cleared: cleared,
+      similarity:,
+      cleared:,
       photo: {
         id: photo.id,
-        image_url: photo.image.attached? ? url_for(photo.image) : nil,
-        similarity: similarity
+        image_url: image_url,
+        similarity:
       }
     }
-  rescue => e
+  rescue StandardError => e
     Rails.logger.error "Error processing photo: #{e.message}"
     Rails.logger.error e.backtrace.join("\n")
-    render json: { success: false, error: "写真の処理中にエラーが発生しました" }, status: :unprocessable_entity
+    render json: { success: false, error: '写真の処理中にエラーが発生しました' }, status: :unprocessable_entity
   end
 end
