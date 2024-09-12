@@ -1,0 +1,4 @@
+<div id="photo_<%= photo.id %>">
+  <%= image_tag photo.image, class: 'photo-image' if photo.image.attached? %>
+  <p>類似度: <%= (photo.similarity * 100).round(2) %>%</p>
+</div>

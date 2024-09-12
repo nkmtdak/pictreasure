@@ -8,9 +8,21 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = @challenge.photos.build(photo_params)
-    photo.user = current_user
-    process_photo(photo, save: true)
+    @photo = @challenge.photos.build(photo_params)
+    @photo.user = current_user
+  
+    if @photo.save
+      render json: { 
+        success: true, 
+        photo: {
+          id: @photo.id,
+          image_url: url_for(@photo.image),
+          similarity: @photo.similarity
+        }
+      }, status: :created
+    else
+      render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
@@ -26,8 +38,12 @@ class PhotosController < ApplicationController
   end
 
   def process_photo(photo, save:)
+    Rails.logger.info "Processing photo for challenge: #{@challenge.id}, Save: #{save}"
+
     if save && !photo.save
-      render json: { success: false, error: photo.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      error_message = photo.errors.full_messages.join(', ')
+      Rails.logger.error "Failed to save photo: #{error_message}"
+      render json: { success: false, error: error_message }, status: :unprocessable_entity
       return
     end
 
@@ -35,13 +51,21 @@ class PhotosController < ApplicationController
     photo.update(similarity:) if save
     cleared = similarity >= 0.7
 
+    image_url = if photo.image.attached?
+                  url_for(photo.image)
+                else
+                  '/images/default-photo.jpg' # デフォルト画像のパスを指定
+                end
+
+    Rails.logger.info "Photo processed successfully. Similarity: #{similarity}, Cleared: #{cleared}"
+
     render json: {
       success: true,
       similarity:,
       cleared:,
       photo: {
         id: photo.id,
-        image_url: photo.image.attached? ? url_for(photo.image) : nil,
+        image_url: image_url,
         similarity:
       }
     }
