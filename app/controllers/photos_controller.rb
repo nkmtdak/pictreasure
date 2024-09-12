@@ -1,13 +1,21 @@
 class PhotosController < ApplicationController
   protect_from_forgery with: :null_session, only: [:similarity_check, :create]
-  before_action :set_challenge
+  before_action :set_challenge, except: [:index]
+
+  def index
+    Rails.logger.info "Entering index action"
+    @photos = current_user.photos  # ユーザーに関連する写真のみを取得
+    render json: @photos
+  end
 
   def similarity_check
+    Rails.logger.info "Entering similarity_check action"
     photo = @challenge.photos.new(image: params[:photo][:image])
     process_photo(photo, save: false)
   end
 
   def create
+    Rails.logger.info "Entering create action"
     @photo = @challenge.photos.build(photo_params)
     @photo.user = current_user
   
@@ -54,7 +62,7 @@ class PhotosController < ApplicationController
     image_url = if photo.image.attached?
                   url_for(photo.image)
                 else
-                  '/images/default-photo.jpg' # デフォルト画像のパスを指定
+                  '/images/default-photo.jpg'
                 end
 
     Rails.logger.info "Photo processed successfully. Similarity: #{similarity}, Cleared: #{cleared}"

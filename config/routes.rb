@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get '/photos', to: 'photos#index'
   root 'challenges#index'
   
-  devise_for :users
   
   resources :challenges do
     resources :photos, only: [:index, :new, :create, :show, :destroy] do
