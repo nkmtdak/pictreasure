@@ -10,9 +10,9 @@ class User < ApplicationRecord
 
   # バリデーション
   validates :username, presence: true, uniqueness: true
-  validates :username, format: { 
+  validates :username, format: {
     with: /\A[a-zA-Z0-9_\p{Han}\p{Hiragana}\p{Katakana}ー－]+\z/,
-    message: "only allows letters, numbers, underscores, and Japanese characters" 
+    message: 'only allows letters, numbers, underscores, and Japanese characters'
   }
 
   # 列挙型

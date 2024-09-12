@@ -46,13 +46,11 @@ class Challenge < ApplicationRecord
   def acceptable_image
     return unless image.attached?
 
-    unless image.blob.byte_size <= 5.megabytes
-      errors.add(:image, "must be less than 5MB")
-    end
+    errors.add(:image, 'must be less than 5MB') unless image.blob.byte_size <= 5.megabytes
 
-    acceptable_types = ["image/png", "image/jpg", "image/jpeg"]
-    unless acceptable_types.include?(image.content_type)
-      errors.add(:image, "must be a PNG, JPG, or JPEG")
-    end
+    acceptable_types = ['image/png', 'image/jpg', 'image/jpeg']
+    return if acceptable_types.include?(image.content_type)
+
+    errors.add(:image, 'must be a PNG, JPG, or JPEG')
   end
 end

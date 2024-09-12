@@ -24,11 +24,11 @@ class Photo < ApplicationRecord
 
       distance = Phashion.hamming_distance(photo_hash, challenge_hash)
       Rails.logger.debug "Hamming distance: #{distance}"
-      similarity = 1 - (distance / 64.0)  # pHashは64ビットのハッシュを使用
+      similarity = 1 - (distance / 64.0) # pHashは64ビットのハッシュを使用
       rounded_similarity = similarity.round(4)
       Rails.logger.debug "Calculated similarity: #{rounded_similarity}"
       rounded_similarity
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error "Error in calculate_similarity: #{e.message}"
       Rails.logger.error e.backtrace.join("\n")
       0
@@ -46,7 +46,7 @@ class Photo < ApplicationRecord
       attachment.open do |file|
         Phashion::Image.new(file.path).fingerprint
       end
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error "Error calculating pHash fingerprint: #{e.message}"
       Rails.logger.error e.backtrace.join("\n")
       nil

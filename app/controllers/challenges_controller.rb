@@ -56,18 +56,18 @@ class ChallengesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to challenges_path, alert: 'Challenge not found.'
   end
-  
+
   def authorize_user
-    unless current_user && (current_user.admin? || @challenge.user == current_user)
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to challenges_path
-    end
+    return if current_user && (current_user.admin? || @challenge.user == current_user)
+
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to challenges_path
   end
 
   def calculate_similarity(challenge, photo)
     challenge_hash = challenge.calculate_image_hash
     photo_hash = photo.calculate_image_hash
-    hamming_distance = (challenge_hash ^ photo_hash).to_s(2).count("1")
+    hamming_distance = (challenge_hash ^ photo_hash).to_s(2).count('1')
     1 - (hamming_distance.to_f / 64)
   end
 end
