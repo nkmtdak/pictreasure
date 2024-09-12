@@ -34,6 +34,11 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def start
+    @challenge = YAML.load_file(Rails.root.join('config', 'challenges.yml'))['challenges'].sample
+  end
+end
+
   private
 
   def challenge_params

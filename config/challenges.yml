@@ -1,0 +1,9 @@
+challenges:
+  - id: 1
+    filename: shibuya1.jpg
+    title: "渋谷TSUTAYA"
+    difficulty: 2
+  - id: 2
+    filename: shibuya2.jpg
+    title: "忠犬ハチ公象"
+    difficulty: 3
