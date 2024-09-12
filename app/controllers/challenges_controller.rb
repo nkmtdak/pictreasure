@@ -37,9 +37,8 @@ class ChallengesController < ApplicationController
   def start
     @challenge = YAML.load_file(Rails.root.join('config', 'challenges.yml'))['challenges'].sample
   end
-end
 
-  private
+  private  # この行を class の内部に移動
 
   def challenge_params
     params.require(:challenge).permit(:title, :description, :image, :thumbnail, :theme_image)
