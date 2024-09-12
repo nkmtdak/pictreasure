@@ -10,6 +10,8 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
   private
 
   def create_active_storage_blobs_table(primary_key_type)
+    return if table_exists?(:active_storage_blobs)
+
     create_table :active_storage_blobs, id: primary_key_type do |t|
       t.string   :key,          null: false
       t.string   :filename,     null: false
@@ -27,11 +29,11 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
       t.index [ :key ], unique: true
     end
-  rescue ActiveRecord::StatementInvalid => e
-    raise e unless e.message.include?('PG::DuplicateTable')
   end
 
   def create_active_storage_attachments_table(primary_key_type, foreign_key_type)
+    return if table_exists?(:active_storage_attachments)
+
     create_table :active_storage_attachments, id: primary_key_type do |t|
       t.string     :name,     null: false
       t.references :record,   null: false, polymorphic: true, index: false, type: foreign_key_type
@@ -46,11 +48,11 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.index [ :record_type, :record_id, :name, :blob_id ], name: :index_active_storage_attachments_uniqueness, unique: true
       t.foreign_key :active_storage_blobs, column: :blob_id
     end
-  rescue ActiveRecord::StatementInvalid => e
-    raise e unless e.message.include?('PG::DuplicateTable')
   end
 
   def create_active_storage_variant_records_table(primary_key_type, foreign_key_type)
+    return if table_exists?(:active_storage_variant_records)
+
     create_table :active_storage_variant_records, id: primary_key_type do |t|
       t.belongs_to :blob, null: false, index: false, type: foreign_key_type
       t.string :variation_digest, null: false
@@ -58,8 +60,6 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.index [ :blob_id, :variation_digest ], name: :index_active_storage_variant_records_uniqueness, unique: true
       t.foreign_key :active_storage_blobs, column: :blob_id
     end
-  rescue ActiveRecord::StatementInvalid => e
-    raise e unless e.message.include?('PG::DuplicateTable')
   end
 
   def primary_and_foreign_key_types
