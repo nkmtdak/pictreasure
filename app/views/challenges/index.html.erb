@@ -6,7 +6,7 @@
     <%= image_tag challenge.image.variant(resize_to_limit: [300, 200]), class: 'card-img-top' if challenge.image.attached? %>
     <h2><%= challenge.title %></h2>
     <p><%= truncate(challenge.description, length: 100) %></p>
-    <%= link_to '詳細', challenge_path(challenge), class: 'btn' %>
+    <%= link_to 'チャレンジ開始', challenge_path(challenge), class: 'btn' %>
   </div>
 <% end %>
 
