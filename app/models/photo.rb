@@ -10,29 +10,21 @@ class Photo < ApplicationRecord
   SIMILARITY_THRESHOLD = 0.9 # 類似度の閾値を設定
 
   def calculate_similarity
-    Rails.logger.debug "Starting similarity calculation for Photo ID: #{id}"
-    return 0 unless image.attached? && challenge.image.attached?
-
-    begin
-      photo_hash = phash_fingerprint(image)
-      challenge_hash = phash_fingerprint(challenge.image)
-
-      Rails.logger.debug "Photo hash: #{photo_hash}"
-      Rails.logger.debug "Challenge hash: #{challenge_hash}"
-
-      return 0 if photo_hash.nil? || challenge_hash.nil?
-
-      distance = Phashion.hamming_distance(photo_hash, challenge_hash)
-      Rails.logger.debug "Hamming distance: #{distance}"
-      similarity = 1 - (distance / 64.0) # pHashは64ビットのハッシュを使用
-      rounded_similarity = similarity.round(4)
-      Rails.logger.debug "Calculated similarity: #{rounded_similarity}"
-      rounded_similarity
-    rescue StandardError => e
-      Rails.logger.error "Error in calculate_similarity: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
-      0
-    end
+    challenge_image = MiniMagick::Image.read(challenge.image.download)
+    uploaded_image = MiniMagick::Image.read(image.download)
+  
+    challenge_phash = Phashion::Image.new(challenge_image.path)
+    uploaded_phash = Phashion::Image.new(uploaded_image.path)
+  
+    distance = challenge_phash.distance_from(uploaded_phash)
+    max_distance = 64.0  # 最大ハミング距離
+    similarity = 1 - (distance / max_distance)
+  
+    similarity
+  rescue StandardError => e
+    Rails.logger.error "Error calculating similarity: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 
   def similar_to_challenge?
@@ -42,15 +34,13 @@ class Photo < ApplicationRecord
   def phash_fingerprint(attachment)
     return nil unless attachment.attached?
 
-    begin
-      attachment.open do |file|
-        Phashion::Image.new(file.path).fingerprint
-      end
-    rescue StandardError => e
-      Rails.logger.error "Error calculating pHash fingerprint: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
-      nil
+    attachment.open do |file|
+      Phashion::Image.new(file.path).fingerprint
     end
+  rescue StandardError => e
+    Rails.logger.error "Error calculating pHash fingerprint: #{e.message}"
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 
   private

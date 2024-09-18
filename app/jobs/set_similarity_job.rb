@@ -3,13 +3,12 @@ class SetSimilarityJob < ApplicationJob
 
   def perform(photo_id)
     photo = Photo.find(photo_id)
-    Rails.logger.debug "Setting similarity for Photo ID: #{photo.id}"
-
-    calculated_similarity = photo.calculate_similarity
-    Rails.logger.debug "Calculated similarity: #{calculated_similarity}"
-
-    photo.update(similarity: calculated_similarity)
-    Rails.logger.debug "Updated similarity: #{photo.similarity}"
+    similarity = photo.calculate_similarity
+    if similarity
+      photo.update(similarity: similarity)
+    else
+      Rails.logger.error "Failed to calculate similarity for Photo ID: #{photo_id}"
+    end
   rescue StandardError => e
     Rails.logger.error "Error in SetSimilarityJob: #{e.message}"
     Rails.logger.error e.backtrace.join("\n")

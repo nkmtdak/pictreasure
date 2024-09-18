@@ -77,7 +77,7 @@ end
 
 gem 'devise'
 gem 'sassc-rails', '~> 2.1'
-gem 'image_processing'
+gem 'image_processing', '~> 1.2'
 gem 'phashion'
 gem 'mini_magick'
-gem "ruby-vips"
+gem "dartsass-rails"
