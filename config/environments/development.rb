@@ -90,4 +90,6 @@ Rails.application.configure do
   config.active_storage.logger = ActiveSupport::Logger.new(STDOUT)
   config.active_record.verbose_query_logs = true
   config.active_record.logger = ActiveSupport::Logger.new(STDOUT)
+  config.dartsass.build_options = ['--embed-source-map']
+  config.dartsass.logger = Rails.logger
 end

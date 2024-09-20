@@ -1,17 +1,15 @@
 <h1><%= @challenge.title %></h1>
-
 <div class="challenge-container">
-  <div class="challenge-image-container">
   <% if @challenge.cleared? %>
-      <%= image_tag 'clearstamp.png', class: 'clear-stamp animated' %>
-    <%= image_tag @challenge.image, class: 'challenge-photo' if @challenge.image.attached? %>
-    <% end %>
+  <div class="challenge-image-container">
+      <%= image_tag 'clearstamp_s.png', class: 'clear-stamp' %>
+      <%= image_tag @challenge.image, class: 'challenge-photo' if @challenge.image.attached? %>
   </div>
+  <% end %>
 
   <section class="challenge-status">
     <% if @challenge.cleared? %>
       <div class="alert alert-success">
-        <%= image_tag 'clearstamp.png', class: 'clear-stamp-small' %>
         <div class="alert-content">
           <h2>チャレンジクリア！</h2>
           <p>おめでとうございます！このチャレンジを見事にクリアしました。</p>

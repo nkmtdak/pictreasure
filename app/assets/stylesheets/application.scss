@@ -1,19 +1,25 @@
-@import 'variables';
-@import 'reset';
-@import 'challenges';
+
+@use "reset";
+@use "variables" as *;
+@use "challenges_index";
+@use "challenge_show";
 
 body {
+  width:100%;
+  height:auto;
   background-color: $body-color;
   color: $text-color;
 }
 
 main {
+  width:100%;
   padding: 40px 20px;
 }
 
 h1 {
   color: $text-color;
   font-size: 2.5em;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
   text-shadow: 2px 2px 4px rgba($accent-color, 0.2);

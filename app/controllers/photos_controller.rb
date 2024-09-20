@@ -9,13 +9,13 @@ class PhotosController < ApplicationController
 
     if @photo.save
       SetSimilarityJob.perform_later(@photo.id)
-      render json: { 
-        success: true, 
+      render json: {
+        success: true,
         photo: {
           id: @photo.id,
           image_url: url_for(@photo.image)
         },
-        message: "写真がアップロードされました。類似度を計算中です。"
+        message: '写真がアップロードされました。類似度を計算中です。'
       }, status: :created
     else
       render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity

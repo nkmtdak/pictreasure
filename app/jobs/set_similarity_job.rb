@@ -5,7 +5,7 @@ class SetSimilarityJob < ApplicationJob
     photo = Photo.find(photo_id)
     similarity = photo.calculate_similarity
     if similarity
-      photo.update(similarity: similarity)
+      photo.update(similarity:)
     else
       Rails.logger.error "Failed to calculate similarity for Photo ID: #{photo_id}"
     end

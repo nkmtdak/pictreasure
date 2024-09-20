@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // 変数
 $border-radius: 8px;
 $transition-duration: 0.3s;
@@ -25,4 +27,4 @@ $border-color: $dark-color;
 $background-color: $light-color;
 
 // ホバー状態の色
-$link-hover-color: darken($accent-color, 10%);
+$link-hover-color: color.scale($accent-color, $lightness: -10%);
