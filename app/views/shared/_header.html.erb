@@ -1,9 +1,15 @@
-<header class="site-header">
+<header class="site-header <%= 'admin-header' if current_user&.master? %>">
   <div class="container">
     <nav>
       <%= link_to 'Pictreasure', root_path, class: 'logo' %>
       <ul class="nav-links">
         <% if user_signed_in? %>
+          <% if current_user.master? %>
+            <li class="user-greeting admin-greeting">おかえりなさい、管理者様</li>
+            <li><%= link_to '管理画面', admin_dashboard_path, class: 'nav-button admin-button' %></li>
+          <% else %>
+            <li class="user-greeting">こんにちは、<%= current_user.username %>さん</li>
+          <% end %>
           <li><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-button' %></li>
           <li><%= link_to 'プロフィール編集', edit_user_registration_path, class: 'nav-button' %></li>
           <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-button btn-logout' %></li>

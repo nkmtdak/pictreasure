@@ -52,6 +52,12 @@ p {
 .site-header, .site-footer {
   background-color: $accent-color;
   padding: 15px 10px;
+  }
+
+  .user-greeting {
+    margin-right: 15px;
+    font-weight: bold;
+    color: $primary-color;
 
   & > .container > p {
     color: #fff; // フッター内の段落テキストの色

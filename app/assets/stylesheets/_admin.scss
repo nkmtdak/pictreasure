@@ -1,0 +1,24 @@
+.admin-header {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .admin-header .logo,
+  .admin-header .nav-button,
+  .admin-header .btn-logout {
+    color: #ffffff;
+  }
+  
+  .admin-greeting {
+    color: #ffd700; /* ゴールド色 */
+    font-weight: bold;
+  }
+  
+  .admin-button {
+    background-color: #ffd700;
+    color: #000000 !important;
+  }
+  
+  .admin-button:hover {
+    background-color: #ffec8b;
+  }

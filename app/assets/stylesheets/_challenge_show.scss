@@ -45,6 +45,10 @@
     display: flex;
     align-items: center;
     justify-content: start;
+    pading:10px;
+    background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
+    border: none;
+    color: #8B4513;
     .clear-stamp {
       display: block;
       max-width: 60px;
@@ -54,10 +58,12 @@
       aspect-ratio: 1/1;
       margin-right: 5px;
     }
-  }
-
-  .alert-content {
-    width: calc(100% - 90px);
+    .alert-content {
+      width:100%;
+      h2{
+        text-shadow: 2px 2px 0 $light-color;
+      }
+    }
   }
 
   .photos-section {

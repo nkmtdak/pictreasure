@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'challenges#index'
-
+  
   resources :challenges do
     resources :photos, only: [:index, :new, :create, :show, :destroy] do
       collection do
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # API用のルーティング
+  # API用のルーティング（必要な場合）
   namespace :api do
     namespace :v1 do
       resources :challenges, only: [:index, :show] do

@@ -9,25 +9,29 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   # バリデーション
+  validates :role, presence: true
   validates :username, presence: true, uniqueness: true
   validates :username, format: {
     with: /\A[a-zA-Z0-9_\p{Han}\p{Hiragana}\p{Katakana}ー－]+\z/,
     message: 'only allows letters, numbers, underscores, and Japanese characters'
   }
 
-  # 列挙型
-  enum role: { regular: 0, admin: 1 }
+  # 役割の定義
+  enum role: { challenger: 0, master: 1 }
 
-  # スコープ
-  scope :admins, -> { where(role: :admin) }
 
-  # インスタンスメソッド
-  def admin?
-    role == 'admin'
+# スコープの定義（必要に応じて）
+  scope :challengers, -> { where(role: :challenger) }
+  scope :masters, -> { where(role: :master) }
+
+  # ヘルパーメソッド
+
+  def challenger?
+    role == 'challenger'
   end
 
-  def active_challenges
-    challenges.where(status: 'active')
+  def master?
+    role == 'master'
   end
 
   def completed_challenges
