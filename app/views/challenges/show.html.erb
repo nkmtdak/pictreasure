@@ -1,17 +1,16 @@
 <h1><%= @challenge.title %></h1>
 <div class="challenge-container">
-  <% if @challenge.cleared? %>
   <div class="challenge-image-container">
+    <%= image_tag @challenge.image, class: 'challenge-photo' if @challenge.image.attached? %>
+    <% if @challenge.cleared? %>
       <%= image_tag 'clearstamp_s.png', class: 'clear-stamp' %>
-      <%= image_tag @challenge.image, class: 'challenge-photo' if @challenge.image.attached? %>
+    <% end %>
   </div>
-  <% end %>
 
   <section class="challenge-status">
     <% if @challenge.cleared? %>
       <div class="alert alert-success">
-      
-      <div class="alert-content">
+        <div class="alert-content">
           <h2>チャレンジクリア！</h2>
           <p>おめでとうございます！このチャレンジを見事にクリアしました。</p>
         </div>
@@ -31,7 +30,7 @@
     </div>
   <% end %>
 
-  <% if current_user && (current_user.admin? || @challenge.user == current_user) %>
+  <% if current_user && (current_user.master? || @challenge.user == current_user) %>
     <div class="challenge-actions">
       <%= link_to 'チャレンジ編集', edit_challenge_path(@challenge), class: 'btn btn-primary' %>
       <%= link_to 'チャレンジ削除', challenge_path(@challenge), method: :delete, 

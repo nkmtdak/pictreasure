@@ -1,24 +1,49 @@
-.admin-header {
-    background-color: #000000;
-    color: #ffffff;
+@use "sass:color";
+@use "variables" as *;
+
+// マスターユーザー用のスタイル
+body .admin-header,
+body .admin-footer {
+  background-color: $dark-color;
+  color: $light-color;
+
+  .user-greeting {
+    margin-right: 15px;
+    transition: color 0.3s ease;
+    .role-mode{
+        color:$main-color;
+        font-size:11px;
+        font-weight: 500;
+    }
+    .header-name{
+        font-weight: 600;
+
+    &:hover {
+        color:$accent-color;
+    }
+    }
+ }
+
+  .nav-button {
+    color: #FFFFFF; // $light-color
+    border-color: #FFFFFF; // $light-color
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #FFFFFF; // $light-color
+      color: #333333; // $dark-color
+    }
+
+    &.btn-signup,
+    &.btn-login,
+    &.btn-logout {
+      background-color: #FFFFFF; // $light-color
+      color: #333333; // $dark-color
+
+      &:hover {
+        background-color: $accent-color; // $secondary-color
+        color: #FFFFFF; // $light-color
+      }
+    }
   }
-  
-  .admin-header .logo,
-  .admin-header .nav-button,
-  .admin-header .btn-logout {
-    color: #ffffff;
-  }
-  
-  .admin-greeting {
-    color: #ffd700; /* ゴールド色 */
-    font-weight: bold;
-  }
-  
-  .admin-button {
-    background-color: #ffd700;
-    color: #000000 !important;
-  }
-  
-  .admin-button:hover {
-    background-color: #ffec8b;
-  }
+}

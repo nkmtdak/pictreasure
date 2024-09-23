@@ -1,0 +1,83 @@
+@use "variables" as *;
+
+// コンテナ
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+// ヘッダー
+.site-header {
+  background-color: $accent-color;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-left: 10px;
+    }
+  }
+}
+
+// メインコンテンツ
+main {
+  padding: 40px 0;
+}
+
+// フッター
+.site-footer {
+  background-color: $accent-color;
+  color: $light-color;
+  padding: 20px 0;
+  margin-top: 40px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+// グリッドシステム
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.col {
+  flex: 1;
+  padding: 0 10px;
+}
+
+// レスポンシブデザイン
+@media (max-width: 768px) {
+  .site-header {
+    .container {
+      flex-direction: column;
+    }
+
+    .nav-links {
+      margin-top: 15px;
+    }
+  }
+
+  .col {
+    flex: 0 0 100%;
+  }
+}

@@ -26,6 +26,7 @@ class ChallengesController < ApplicationController
   end
 
   def edit
+    @current_image = @challenge.image if @challenge.image.attached?
   end
 
   def update
@@ -58,8 +59,8 @@ class ChallengesController < ApplicationController
   end
 
   def authorize_user
-    return if current_user && (current_user.admin? || @challenge.user == current_user)
-
+    return if current_user && (current_user.master? || @challenge.user == current_user)
+    
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to challenges_path
   end

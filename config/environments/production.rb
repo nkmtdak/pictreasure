@@ -13,6 +13,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
+  config.eager_load = true
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
@@ -25,8 +26,12 @@ Rails.application.configure do
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
 
+
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.assets.digest = true
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

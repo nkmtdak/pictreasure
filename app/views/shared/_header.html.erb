@@ -5,8 +5,8 @@
       <ul class="nav-links">
         <% if user_signed_in? %>
           <% if current_user.master? %>
-            <li class="user-greeting admin-greeting">おかえりなさい、管理者様</li>
-            <li><%= link_to '管理画面', admin_dashboard_path, class: 'nav-button admin-button' %></li>
+            <li class="user-greeting "><div class="role-mode" >管理者モード</div>
+            <div class="header-name"><%= current_user.username %>さん</div></li>
           <% else %>
             <li class="user-greeting">こんにちは、<%= current_user.username %>さん</li>
           <% end %>

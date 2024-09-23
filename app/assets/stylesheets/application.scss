@@ -1,6 +1,8 @@
 
 @use "reset";
 @use "variables" as *;
+@use "layout";
+@use "admin";
 @use "challenges_index";
 @use "challenge_show";
 
@@ -37,7 +39,7 @@ h2 {
     transition: color $transition-duration ease;
 
     &:hover {
-      color: $primary-color;
+      color: $main-color;
     }
   }
 }
@@ -52,17 +54,20 @@ p {
 .site-header, .site-footer {
   background-color: $accent-color;
   padding: 15px 10px;
-  }
-
-  .user-greeting {
-    margin-right: 15px;
-    font-weight: bold;
-    color: $primary-color;
-
+  transition: background-color $transition-duration ease;
   & > .container > p {
     color: #fff; // フッター内の段落テキストの色
   }
 }
+
+user-greeting {
+  margin-right: 15px;
+  font-weight: bold;
+  color: $main-color;
+  transition: color $transition-duration ease;
+}
+
+  
 
 .container {
   display: flex;
@@ -84,7 +89,7 @@ p {
   transition: color $transition-duration ease;
 
   &:hover {
-    color: $secondary-color;
+    color: $sub-color;
   }
 }
 
@@ -116,7 +121,7 @@ p {
     color: $accent-color; // テキスト色
 
     &:hover { // ホバー時
-        background-color: $secondary-color; // ホバー時の背景色
+        background-color: $sub-color; // ホバー時の背景色
         color: $text-color; // ホバー時のテキスト色
     }
 }

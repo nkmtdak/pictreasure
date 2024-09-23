@@ -4,8 +4,8 @@
 .challenge-container{
     width:100%;
         height: 100%;
-        min-height: 100px;
-        background-color: white; 
+        min-height: 300px;
+        background-color: $light-color;; 
   .challenge-image-container {
     z-index: 0;
     position: relative;
@@ -13,21 +13,22 @@
     justify-content: center;
     max-width: 100%;
     width:100%;
-    max-height: 350px;
+    max-height: 380px;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background-color: #333333;
+    background-color: $dark-color; ;
     img.challenge-photo {
-      width: 100%;
-      height: 100%;
+      display:block;
+      margin:0  auto;
+      height: auto;
     }
-  
     .clear-stamp {
         z-index: 1;
         display: block;
         position: absolute;
         top: 50%;
         left: 50%;
+        animation: stamp-appear 0.5s ease-out forwards;
         transform: translate(-50%,-50%);
         width:100%;
         height:100%;
@@ -45,7 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    pading:10px;
+    padding:10px;
     background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
     border: none;
     color: #8B4513;
@@ -164,7 +165,7 @@
     transition: background-color $transition-duration ease, transform $transition-duration ease;
 
     &:hover {
-        background-color: color.scale($primary-color, $lightness: -10%);
+        background-color: color.scale($main-color, $lightness: -10%);
         transform: translateY(-2px);
     }
   }
@@ -182,5 +183,16 @@
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotate(-20deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .challenge-container {
+    .challenge-image-container {
+      max-height: 250px;
+    }
+    .photo-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
   }
 }

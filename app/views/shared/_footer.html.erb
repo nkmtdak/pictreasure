@@ -1,4 +1,4 @@
-<footer class="site-footer">
+<footer class="site-footer <%= 'admin-footer' if current_user&.master? %>">
   <div class="container">
     <p>&copy; <%= Time.current.year %> Pictreasure. All rights reserved.</p>
   </div>

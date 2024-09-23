@@ -5,8 +5,8 @@ $border-radius: 8px;
 $transition-duration: 0.3s;
 
 // メインカラー（黄色系）
-$primary-color: #FFD700; // ゴールド（メインカラー）
-$secondary-color: #FFF700; // 明るい黄色（サブカラー）
+$main-color: #FFD700; // ゴールド（メインカラー）
+$sub-color: #FFF700; // 明るい黄色（サブカラー）
 $body-color: #F2A900; //バタースコッチ（ボデイカラー）
 
 // アクセントカラー（赤系）
@@ -20,11 +20,6 @@ $light-gray: #E0E0E0; // 明るいグレー
 // テキストカラー
 $text-color: $dark-color; // テキスト用の基本色
 
-// ボーダーの色
-$border-color: $dark-color;
-
-// 背景色
-$background-color: $light-color;
-
 // ホバー状態の色
 $link-hover-color: color.scale($accent-color, $lightness: -10%);
+
