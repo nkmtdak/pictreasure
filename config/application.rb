@@ -1,6 +1,6 @@
 require_relative "boot"
-
 require "rails/all"
+require "dartsass-rails"
 
 Bundler.require(*Rails.groups)
 
