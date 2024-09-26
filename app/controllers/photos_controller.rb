@@ -6,19 +6,32 @@ class PhotosController < ApplicationController
   def create
     @photo = @challenge.photos.build(photo_params)
     @photo.user = current_user
-
+  
     if @photo.save
       SetSimilarityJob.perform_later(@photo.id)
-      render json: {
-        success: true,
-        photo: {
-          id: @photo.id,
-          image_url: url_for(@photo.image)
-        },
-        message: '写真がアップロードされました。類似度を計算中です。'
-      }, status: :created
+      
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message', locals: { message: "写真がアップロードされました。類似度を計算中です。", type: 'success' })
+        }
+        format.json {
+          render json: {
+            success: true,
+            photo: {
+              id: @photo.id,
+              image_url: url_for(@photo.image)
+            },
+            message: '写真がアップロードされました。類似度を計算中です。'
+          }, status: :created
+        }
+      end
     else
-      render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message', locals: { message: @photo.errors.full_messages.join(", "), type: 'danger' })
+        }
+        format.json { render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
