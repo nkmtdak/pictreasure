@@ -42,10 +42,6 @@ class ChallengesController < ApplicationController
     redirect_to challenges_path, notice: 'チャレンジが正常に削除されました。'
   end
 
-  def start
-    @challenge = YAML.load_file(Rails.root.join('config', 'challenges.yml'))['challenges'].sample
-  end
-
   private
 
   def challenge_params
@@ -63,3 +59,4 @@ class ChallengesController < ApplicationController
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to challenges_path
   end
+end
