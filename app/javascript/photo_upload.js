@@ -39,7 +39,7 @@ document.addEventListener('turbo:load', function() {
     });
   }
 
-  function checkSimilarity(photoId) {
+  function checkSimilarity(photoId, element = null) {
     const checkInterval = setInterval(() => {
       fetch(`/photos/${photoId}/check_similarity`, {
         headers: {
@@ -51,7 +51,13 @@ document.addEventListener('turbo:load', function() {
       .then(data => {
         if (data.similarity !== null) {
           clearInterval(checkInterval);
-          updateSimilarityDisplay(data);
+          if (element) {
+            // チャレンジ履歴の類似度を更新
+            element.textContent = `類似度: ${(data.similarity * 100).toFixed(2)}%`;
+          } else {
+            // 新しくアップロードされた写真の類似度を更新
+            updateSimilarityDisplay(data);
+          }
         }
       })
       .catch(error => {
@@ -68,16 +74,37 @@ document.addEventListener('turbo:load', function() {
     updatePhotoGrid(data.photo);
   }
 
+  // 既存の写真の類似度をチェックする関数
+  function checkExistingSimilarities() {
+    document.querySelectorAll('.photo-item').forEach(item => {
+      const similaritySpan = item.querySelector('.similarity');
+      if (similaritySpan && similaritySpan.textContent.includes('計算中')) {
+        const photoId = item.dataset.photoId;
+        if (photoId) {
+          checkSimilarity(photoId, similaritySpan);
+        }
+      }
+    });
+  }
+
   function updatePhotoGrid(photo) {
     const photoGrid = document.querySelector('.photo-grid');
     if (photoGrid) {
       const photoItem = document.createElement('div');
       photoItem.className = 'photo-item';
+      photoItem.dataset.photoId = photo.id;
       photoItem.innerHTML = `
         <img src="${photo.image_url}" class="photo-image" alt="Uploaded photo">
-        <p class="photo-similarity">類似度: ${(photo.similarity * 100).toFixed(2)}%</p>
+        <div class="photo-info">
+          <span class="upload-date">${new Date().toLocaleString()}</span><br>
+          <span class="username">ユーザー名: ${photo.user_username}</span>
+          <span class="similarity">類似度: ${(photo.similarity * 100).toFixed(2)}%</span>
+        </div>
       `;
       photoGrid.insertBefore(photoItem, photoGrid.firstChild);
     }
   }
+
+  // ページロード時に既存の写真の類似度をチェック
+  checkExistingSimilarities();
 });
