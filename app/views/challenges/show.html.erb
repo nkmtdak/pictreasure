@@ -54,19 +54,22 @@
     <div id="similarity-result"></div>
   <% end %>
 
-  <div class="photos-section">
-    <h2>最新のチャレンジ履歴</h2>
-    <div class="photo-grid">
-      <% @challenge.photos.order(created_at: :desc).limit(3).each do |photo| %>
-        <div class="photo-item">
-          <%= image_tag photo.image, class: 'photo-image' if photo.image.attached? %>
-          <div class="photo-info">
-            <span class="upload-date"><%= photo.created_at.strftime("%Y/%m/%d %H:%M") %></span><br>
-            <span class="username">ユーザー名:<%= photo.user.username %></span>
-          </div>
-          <p class="photo-similarity">類似度: <%= photo.similarity ? (photo.similarity * 100).round(2) : '未計算' %>%</p>
+<div class="photos-section">
+  <h2>最新のチャレンジ履歴</h2>
+  <div class="photo-grid">
+    <% @challenge.photos.order(created_at: :desc).limit(3).each do |photo| %>
+      <div class="photo-item">
+        <%= image_tag photo.image, class: 'photo-image' if photo.image.attached? %>
+        <div class="photo-info">
+          <span class="upload-date"><%= photo.created_at.strftime("%Y/%m/%d %H:%M") %></span><br>
+          <span class="username">ユーザー名: <%= photo.user.username %></span>
+          <% if photo.similarity %>
+            <span class="similarity">類似度: <%= (photo.similarity * 100).round(2) %>%</span>
+          <% else %>
+            <span class="similarity">類似度: 計算中...</span>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -84,27 +84,32 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
-
   .photo-item {
     border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .photo-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .photo-info {
     padding: 10px;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
   }
+  
+  .photo-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .photo-info {
+    margin-top: 10px;
+  }
+  
+  .upload-date, .username, .similarity {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .similarity {
+    font-weight: bold;
+    color: #007bff;
+  }
+
 
   .username {
     font-weight: bold;
