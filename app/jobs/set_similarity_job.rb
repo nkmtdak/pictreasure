@@ -3,15 +3,15 @@ class SetSimilarityJob < ApplicationJob
 
   def perform(photo_id)
     Rails.logger.info "Starting SetSimilarityJob for Photo ID: #{photo_id}"
-    
+
     photo = Photo.find(photo_id)
     Rails.logger.info "Found photo with ID: #{photo_id}"
-    
+
     similarity = photo.calculate_similarity
     Rails.logger.info "Calculated similarity for Photo ID: #{photo_id}, Similarity: #{similarity}"
-    
+
     if similarity
-      result = photo.update(similarity: similarity)
+      result = photo.update(similarity:)
       if result
         Rails.logger.info "Successfully updated similarity for Photo ID: #{photo_id}"
       else

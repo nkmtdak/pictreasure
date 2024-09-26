@@ -19,8 +19,7 @@ class User < ApplicationRecord
   # 役割の定義
   enum role: { challenger: 0, master: 1 }
 
-
-# スコープの定義（必要に応じて）
+  # スコープの定義（必要に応じて）
   scope :challengers, -> { where(role: :challenger) }
   scope :masters, -> { where(role: :master) }
 

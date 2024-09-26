@@ -6,17 +6,18 @@ class PhotosController < ApplicationController
   def create
     @photo = @challenge.photos.build(photo_params)
     @photo.user = current_user
-  
+
     if @photo.save
       Rails.logger.info "Photo saved successfully. ID: #{@photo.id}"
       SetSimilarityJob.perform_later(@photo.id)
       Rails.logger.info "SetSimilarityJob enqueued for Photo ID: #{@photo.id}"
-      
+
       respond_to do |format|
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message', locals: { message: "写真がアップロードされました。類似度を計算中です。", type: 'success' })
-        }
-        format.json {
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message',
+                                                                locals: { message: '写真がアップロードされました。類似度を計算中です。', type: 'success' })
+        end
+        format.json do
           render json: {
             success: true,
             photo: {
@@ -25,14 +26,15 @@ class PhotosController < ApplicationController
             },
             message: '写真がアップロードされました。類似度を計算中です。'
           }, status: :created
-        }
+        end
       end
     else
       Rails.logger.error "Failed to save photo: #{@photo.errors.full_messages.join(', ')}"
       respond_to do |format|
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message', locals: { message: @photo.errors.full_messages.join(", "), type: 'danger' })
-        }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message',
+                                                                locals: { message: @photo.errors.full_messages.join(', '), type: 'danger' })
+        end
         format.json { render json: { success: false, errors: @photo.errors.full_messages }, status: :unprocessable_entity }
       end
     end
@@ -41,7 +43,7 @@ class PhotosController < ApplicationController
   def check_similarity
     Rails.logger.info "Checking similarity for Photo ID: #{@photo.id}"
     Rails.logger.info "Current similarity: #{@photo.similarity}, Status: #{@photo.similarity.nil? ? 'processing' : 'completed'}"
-    
+
     render json: {
       similarity: @photo.similarity,
       cleared: @photo.similarity && @photo.similarity >= 0.7,
