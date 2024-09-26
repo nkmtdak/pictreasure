@@ -16,7 +16,8 @@ https://pictreasure.onrender.com
 類似度が70%以上あったらチャレンジクリアーとなる。
 
 # 開発環境 
-Ruby onRails -7.0.0
+Ruby onRails -7.0.0  
+html&css(scss)  
 javascript
 
 # 実装した機能
@@ -32,7 +33,6 @@ javascript
 # 改善案
 ・お題ランダム機能を設ける。  
 ・制限時間表示機能の実装。  
-実装した機能
 
 # 制作時間
 二週間半
