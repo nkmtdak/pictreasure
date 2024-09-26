@@ -41,7 +41,6 @@
 
     <section class="photo-upload-section">
       <h2>写真をアップロード</h2>
-          <div id="messages"></div>
       <%= form_with(model: [@challenge, Photo.new], local: false, html: { id: 'photo-upload-form' }) do |form| %>
         <div class="field">
           <%= form.label :image %>
