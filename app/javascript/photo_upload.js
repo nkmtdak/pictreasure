@@ -20,10 +20,17 @@ document.addEventListener('turbo:load', function() {
           'Accept': 'application/json'
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        console.log('Raw response:', response);
+        return response.text();
+      })
+      .then(text => {
+        console.log('Response text:', text);
+        return JSON.parse(text);
+      })
       .then(data => {
         if (data.success) {
-          uploadResult.innerHTML = '<div class="alert alert-success"><h3>アップロード成功</h3></div>';
+          uploadResult.innerHTML = '<div class="success-message"><h3>アップロード成功</h3></div>';
           uploadResult.innerHTML += '<p>類似度を計算中...</p>';
           
           // 類似度チェックを開始
@@ -33,8 +40,8 @@ document.addEventListener('turbo:load', function() {
         }
       })
       .catch(error => {
-        console.error('Error:', error);
-        uploadResult.innerHTML = `<div class="alert alert-danger">エラーが発生しました: ${error.message}</div>`;
+        console.error('Detailed error:', error);
+        uploadResult.innerHTML = `<div class="error-message">エラーが発生しました: ${error.message}</div>`;
       });
     });
   }
@@ -47,7 +54,14 @@ document.addEventListener('turbo:load', function() {
           'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        console.log('Raw similarity response:', response);
+        return response.text();
+      })
+      .then(text => {
+        console.log('Similarity response text:', text);
+        return JSON.parse(text);
+      })
       .then(data => {
         if (data.similarity !== null) {
           clearInterval(checkInterval);
@@ -61,7 +75,7 @@ document.addEventListener('turbo:load', function() {
         }
       })
       .catch(error => {
-        console.error('Error checking similarity:', error);
+        console.error('Detailed error checking similarity:', error);
       });
     }, 2000); // 2秒ごとにチェック
   }
@@ -69,7 +83,7 @@ document.addEventListener('turbo:load', function() {
   function updateSimilarityDisplay(data) {
     similarityResult.innerHTML = `
       <p>類似度: ${(data.similarity * 100).toFixed(2)}%</p>
-      ${data.cleared ? '<h2>チャレンジクリア！おめでとうございます！</h2>' : '<p>まだクリア条件を満たしていません。</p>'}
+      ${data.cleared ? '<h2 class="success-message">チャレンジクリア！おめでとうございます！</h2>' : '<p class="info-message">まだクリア条件を満たしていません。</p>'}
     `;
     updatePhotoGrid(data.photo);
   }
