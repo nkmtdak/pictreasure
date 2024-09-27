@@ -6,6 +6,8 @@ class SetSimilarityJob < ApplicationJob
 
     photo = Photo.find(photo_id)
     similarity = photo.calculate_similarity
+    # 結果をキャッシュに保存
+    Rails.cache.write("photo_similarity_#{photo_id}", similarity, expires_in: 1.hour)
 
     if similarity
       if photo.update(similarity: similarity)
