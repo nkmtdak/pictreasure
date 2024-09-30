@@ -22,7 +22,7 @@ Rails.application.configure do
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
-　config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass  # この行の全角スペースを削除しました
 
 
   # Use default logging formatter so that PID and timestamp are not suppressed.

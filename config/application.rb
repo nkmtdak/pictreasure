@@ -20,8 +20,6 @@ module Pictreasure
     # デフォルトのロケールを日本語に設定
     config.i18n.available_locales = [:en, :ja]
     config.i18n.default_locale = :ja
-  
-
     # アセットのバージョンを設定
     config.assets.version = "1.0"
   end

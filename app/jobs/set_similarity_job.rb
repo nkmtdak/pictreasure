@@ -10,9 +10,9 @@ class SetSimilarityJob < ApplicationJob
     Rails.cache.write("photo_similarity_#{photo_id}", similarity, expires_in: 1.hour)
 
     if similarity
-      if photo.update(similarity: similarity)
+      if photo.update(similarity:)
         Rails.logger.info "Updated similarity for Photo ID: #{photo_id}, Similarity: #{similarity}"
-        
+
         # チャレンジのクリア状態を更新
         if similarity >= 0.7 && !photo.challenge.cleared?
           photo.challenge.update(cleared_at: Time.current)
