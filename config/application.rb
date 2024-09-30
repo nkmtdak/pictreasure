@@ -1,5 +1,6 @@
 require_relative "boot"
 require "rails/all"
+require 'aws-sdk-s3'
 
 Bundler.require(*Rails.groups)
 
