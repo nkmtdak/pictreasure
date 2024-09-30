@@ -19,10 +19,15 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
 
-  # Include generic and useful information about system operation, but avoid logging too much
-  # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
-config.assets.css_compressor = :sass
+# Include generic and useful information about system operation, but avoid logging too much
+# information to avoid inadvertent exposure of personally identifiable information (PII).
+config.log_level = :info
+
+# Remove or comment out the following line:
+# config.assets.css_compressor = :sass
+
+# Instead, you can use:
+config.assets.css_compressor = nil
 
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
