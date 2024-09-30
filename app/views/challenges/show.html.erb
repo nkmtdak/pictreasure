@@ -42,16 +42,17 @@
     <section class="photo-upload-section">
       <h2>写真をアップロード</h2>
       <%= form_with(model: [@challenge, Photo.new], local: false, html: { id: 'photo-upload-form' }) do |form| %>
-        <div class="field">
-          <%= form.label :image %>
-          <%= form.file_field :image, direct_upload: true, id: 'photo-upload-input', accept: 'image/*' %>
-        </div>
-        <%= form.submit 'アップロード', class: 'btn btn-success', id: 'photo-upload-submit' %>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, direct_upload: true, id: 'photo-upload-input', accept: 'image/*' %>
+  </div>
+  <%= form.submit 'アップロード', class: 'btn btn-success', id: 'photo-upload-submit' %>
+  　　<% end %>
     </section>
 
     <div id="upload-result"></div>
     <div id="similarity-result"></div>
-  <% end %>
+
 
 <div class="photos-section">
   <h2>最新のチャレンジ履歴</h2>
