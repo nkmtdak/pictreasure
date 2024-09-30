@@ -73,6 +73,7 @@ end
 
 gem 'devise'
 gem "dartsass-rails", "~> 0.5.1"
+gem 'sass-embedded', '~> 1.63.6'
 gem 'phashion'
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false

@@ -86,7 +86,6 @@ GEM
     aws-sigv4 (1.10.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.20)
-    bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -130,24 +129,12 @@ GEM
     ffi (1.17.0-x86_64-linux)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.28.2)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.28.2-aarch64-linux)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.28.2-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.28.2-x86-linux)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.28.2-x86_64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.28.2-x86_64-linux)
-      bigdecimal
-      rake (>= 13)
+    google-protobuf (3.25.5)
+    google-protobuf (3.25.5-aarch64-linux)
+    google-protobuf (3.25.5-arm64-darwin)
+    google-protobuf (3.25.5-x86-linux)
+    google-protobuf (3.25.5-x86_64-darwin)
+    google-protobuf (3.25.5-x86_64-linux)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
@@ -298,18 +285,9 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.3.2)
-    sass-embedded (1.79.4-aarch64-linux)
-      google-protobuf (~> 4.27)
-    sass-embedded (1.79.4-arm-linux)
-      google-protobuf (~> 4.27)
-    sass-embedded (1.79.4-arm64-darwin)
-      google-protobuf (~> 4.27)
-    sass-embedded (1.79.4-x86-linux)
-      google-protobuf (~> 4.27)
-    sass-embedded (1.79.4-x86_64-darwin)
-      google-protobuf (~> 4.27)
-    sass-embedded (1.79.4-x86_64-linux)
-      google-protobuf (~> 4.27)
+    sass-embedded (1.63.6)
+      google-protobuf (~> 3.23)
+      rake (>= 13.0.0)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -380,6 +358,7 @@ DEPENDENCIES
   rails-i18n (~> 7.0.0)
   rspec-rails (~> 5.0)
   rubocop
+  sass-embedded (~> 1.63.6)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
