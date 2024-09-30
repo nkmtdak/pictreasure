@@ -75,5 +75,5 @@ gem 'devise'
 gem "dartsass-rails", '~> 0.5.0'
 gem 'phashion'
 gem 'mini_magick'
-gem 'fog-aws'
+gem 'aws-sdk-s3', require: false
 gem 'rails-i18n', '~> 7.0.0'
