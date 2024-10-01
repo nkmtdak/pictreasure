@@ -69,7 +69,7 @@ group :production do
 end
 
 gem 'devise'
-gem "dartsass-rails", "~> 0.5.1"
+gem 'dartsass-rails', '~> 0.5.0'
 gem 'phashion'
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
