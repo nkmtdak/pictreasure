@@ -123,13 +123,9 @@ GEM
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
     ffi (1.17.0)
-    ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.28.2-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
     google-protobuf (4.28.2-x86_64-darwin)
       bigdecimal
       rake (>= 13)
@@ -182,8 +178,6 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.7-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
@@ -280,8 +274,6 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.3.2)
-    sass-embedded (1.79.4-arm64-darwin)
-      google-protobuf (~> 4.27)
     sass-embedded (1.79.4-x86_64-darwin)
       google-protobuf (~> 4.27)
     sass-embedded (1.79.4-x86_64-linux)
@@ -328,8 +320,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
-  arm64-darwin
-  x86_64-darwin
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
