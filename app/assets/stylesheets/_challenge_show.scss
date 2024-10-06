@@ -1,184 +1,178 @@
 @use "sass:color";
 @use "variables" as *;
 
-.challenge-container{
-    width:100%;
-        height: 100%;
-        min-height: 300px;
-        background-color: $light-color;; 
-  .challenge-image-container {
-    z-index: 0;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    max-width: 100%;
-    width:100%;
-    max-height: 380px;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background-color: $dark-color; ;
-    img.challenge-photo {
-      display:block;
-      margin:0  auto;
-      height: auto;
-    }
-    .clear-stamp {
-        z-index: 1;
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        animation: stamp-appear 0.5s ease-out forwards;
-        transform: translate(-50%,-50%);
-        width:100%;
-        height:100%;
-        max-width: 250px;
-        max-height: 250px;
-    }
-  }
+.challenge-container {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background-color: $light-color;
+}
 
-  .challenge-status {
-    height: auto;
-    max-height: 100px;
-    .challenge-actions{
-    padding:10px;
-    background:$dark-color;
-    border-radius:5px;
-    }
-  }
+.challenge-image-container {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+  max-height: 380px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: $dark-color;
 
-  .alert-success {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding:10px;
-    background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
-    border: none;
-    color: #8B4513;
-    .clear-stamp {
-      display: block;
-      max-width: 60px;
-      max-height: 60px;
-      width: 100%;
-      height:100%;
-      aspect-ratio: 1/1;
-      margin-right: 5px;
-    }
-    .alert-content {
-      width:100%;
-      h2{
-        text-shadow: 2px 2px 0 $light-color;
-      }
-    }
-  }
-
-  .photos-section {
-    padding:20px;
-    margin-top: 40px;
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-      font-weight:700;
-      color: $accent-color;
-    }
-  }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  .photo-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
-  .photo-image {
-    max-width: 100%;
+  .challenge-photo {
+    display: block;
+    margin: 0 auto;
     height: auto;
   }
-  
-  .photo-info {
-    margin-top: 10px;
+
+  .clear-stamp {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: stamp-appear 0.5s ease-out forwards;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    max-width: 250px;
+    max-height: 250px;
   }
-  
-  .upload-date, .username, .similarity {
+}
+
+.challenge-status {
+  height: auto;
+  max-height: 100px;
+}
+
+.alert-success {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
+  border: none;
+  color: #8B4513;
+
+  .clear-stamp {
+    display: block;
+    max-width: 60px;
+    max-height: 60px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin-right: 5px;
+  }
+}
+
+.photos-section {
+  padding: 20px;
+  margin-top: 40px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: $accent-color;
+  }
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.photo-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.photo-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-info {
+  margin-top: 10px;
+}
+
+.upload-date,
+.username,
+.similarity {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.similarity {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.username {
+  font-weight: bold;
+  color: $dark-color;
+}
+
+.upload-date {
+  font-size: 0.8em;
+  color: $dark-color;
+}
+
+.photo-similarity {
+  padding: 10px;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.photo-upload-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: $border-radius;
+  border: 1px solid #ddd;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+}
+
+.field {
+  margin-bottom: 15px;
+
+  label {
     display: block;
     margin-bottom: 5px;
   }
-  
-  .similarity {
-    font-weight: bold;
-    color: #007bff;
-  }
 
-
-
-  .username {
-    font-weight: bold;
-    color: $dark-color;
-  }
-
-  .upload-date {
-    font-size: 0.8em;
-    color: $dark-color;
-  }
-
-  .photo-similarity {
+  input[type="file"] {
+    display: block;
+    width: 100%;
     padding: 10px;
-    background-color: #f0f0f0;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .photo-upload-section {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: $border-radius;
     border: 1px solid #ddd;
-
-    h2 {
-      margin-bottom: 15px;
-    }
-  }
-
-  .field {
-    margin-bottom: 15px;
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input[type="file"] {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: $border-radius;
-    }
-  }
-
-  #photo-upload-submit {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: $accent-color;
-    color: $light-color;
-    text-decoration: none;
     border-radius: $border-radius;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color $transition-duration ease, transform $transition-duration ease;
+  }
+}
 
-    &:hover {
-        background-color: color.scale($main-color, $lightness: -10%);
-        transform: translateY(-2px);
-    }
+#photo-upload-submit {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: $accent-color;
+  color: $light-color;
+  text-decoration: none;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color $transition-duration ease, transform $transition-duration ease;
+
+  &:hover {
+    background-color: color.scale($main-color, $lightness: -10%);
+    transform: translateY(-2px);
   }
 }
 
@@ -198,12 +192,11 @@
 }
 
 @media (max-width: 768px) {
-  .challenge-container {
-    .challenge-image-container {
-      max-height: 250px;
-    }
-    .photo-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
+  .challenge-image-container {
+    max-height: 250px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
