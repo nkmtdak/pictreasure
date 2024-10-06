@@ -40,6 +40,11 @@
   .challenge-status {
     height: auto;
     max-height: 100px;
+    .challenge-actions{
+    padding:10px;
+    background:$dark-color;
+    border-radius:5px;
+    }
   }
 
   .alert-success {
@@ -109,6 +114,7 @@
     font-weight: bold;
     color: #007bff;
   }
+
 
 
   .username {
