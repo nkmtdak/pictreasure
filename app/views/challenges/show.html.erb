@@ -32,8 +32,8 @@
 
 <% if current_user && (current_user.master? || @challenge.user == current_user) %>
   <div class="challenge-actions">
-  <div class="role-mode">管理者モード</div>
     <div class="action-container">
+    <div class="role-mode">管理者モード</div>
       <%= link_to 'チャレンジ編集', edit_challenge_path(@challenge), class: 'action-button edit-button' %>
       <%= link_to 'チャレンジ削除', challenge_path(@challenge), method: :delete, 
           data: { confirm: 'このチャレンジを削除してもよろしいですか？' }, 
