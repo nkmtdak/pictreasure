@@ -2,6 +2,12 @@
 @use "variables" as *;
 
 // マスターユーザー用のスタイル
+.role-mode{
+    color:$main-color;
+    font-size:11px;
+    font-weight: 500;
+}
+
 body .admin-header,
 body .admin-footer {
   background-color: $dark-color;
@@ -10,11 +16,7 @@ body .admin-footer {
   .user-greeting {
     margin-right: 15px;
     transition: color 0.3s ease;
-    .role-mode{
-        color:$main-color;
-        font-size:11px;
-        font-weight: 500;
-    }
+    
     .header-name{
         font-weight: 600;
 
