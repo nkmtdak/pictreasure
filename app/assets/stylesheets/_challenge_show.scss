@@ -74,11 +74,12 @@
   padding: 15px;
   border-radius: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .action-button {
   padding: 10px 15px;
+  margin-right:10px;
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
