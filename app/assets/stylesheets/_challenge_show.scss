@@ -65,6 +65,47 @@
     margin-right: 5px;
   }
 }
+.challenge-actions {
+  margin-top: 20px;
+}
+
+.action-container {
+  background-color: #333;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.action-button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+
+  &:hover {
+    background-color: darken(#4CAF50, 10%);
+  }
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+
+  &:hover {
+    background-color: darken(#f44336, 10%);
+  }
+}
 
 .photos-section {
   padding: 20px;

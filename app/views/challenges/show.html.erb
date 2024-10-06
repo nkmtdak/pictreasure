@@ -30,14 +30,16 @@
     </div>
   <% end %>
 
-  <% if current_user && (current_user.master? || @challenge.user == current_user) %>
-    <div class="challenge-actions">
-      <%= link_to 'チャレンジ編集', edit_challenge_path(@challenge), class: 'btn btn-primary' %>
+<% if current_user && (current_user.master? || @challenge.user == current_user) %>
+  <div class="challenge-actions">
+    <div class="action-container">
+      <%= link_to 'チャレンジ編集', edit_challenge_path(@challenge), class: 'action-button edit-button' %>
       <%= link_to 'チャレンジ削除', challenge_path(@challenge), method: :delete, 
           data: { confirm: 'このチャレンジを削除してもよろしいですか？' }, 
-          class: 'btn btn-danger' %>
+          class: 'action-button delete-button' %>
     </div>
-  <% end %>
+  </div>
+<% end %>
 
     <section class="photo-upload-section">
       <h2>写真をアップロード</h2>
