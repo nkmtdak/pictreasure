@@ -96,7 +96,7 @@
   color: white;
 
   &:hover {
-    background-color: darken(#4CAF50, 10%);
+    background-color: color.scale(#4CAF50, $lightness: -10%);
   }
 }
 
@@ -105,7 +105,7 @@
   color: white;
 
   &:hover {
-    background-color: darken(#f44336, 10%);
+    background-color: color.scale(#f44336, $lightness: -10%);
   }
 }
 
@@ -214,7 +214,7 @@
   transition: background-color $transition-duration ease, transform $transition-duration ease;
 
   &:hover {
-    background-color: color.scale($main-color, $lightness: -10%);
+    background-color: color.scale($accent-color, $lightness: -10%);
     transform: translateY(-2px);
   }
 }
