@@ -1,7 +1,6 @@
 
 @use "reset";
 @use "variables" as *;
-@use "layout";
 @use "admin";
 @use "challenges_index";
 @use "challenge_show";
@@ -78,11 +77,11 @@ p {
   }
 }
 
-.logo-image{
-  max-width:200px;
-  height:auto;
+header.site-header .logo-image {
+  max-width: 200px;
+  width: auto;
+  height: auto;
 }
-
 .nav-links {
   display: flex;
   list-style: none;
