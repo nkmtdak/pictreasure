@@ -1,20 +1,21 @@
 @use "sass:color";
 @use "variables" as *;
+
 .challenges-container {
     padding: 20px;
   
-    h1 {
+  h1 {
       text-align: center;
       margin-bottom: 30px;
-    }
+  }
   
-    .challenge-card {
-      width:calc(100% /3);
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-      padding: 20px;
+  .challenge-card {
+    width: calc(100% / 3);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
   
       .card-img-top {
         width: 100%;
@@ -22,12 +23,12 @@
         object-fit: cover;
         border-radius: 8px 8px 0 0;
       }
-  
+
       h2 {
         font-size: 1.5em;
         margin: 15px 0;
       }
-  
+
       p {
         color: #666;
         margin-bottom: 15px;
@@ -64,4 +65,11 @@
         background-color: color.scale($accent-color, $lightness: -10%);
       }
     }
+
+  @media (max-width: 768px) {
+        .challenge-card {
+          width: 100%;
+          margin-inline:0;
+        }
   }
+}

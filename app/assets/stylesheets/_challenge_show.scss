@@ -277,14 +277,3 @@
   border: 1px solid #ddd;
   border-radius: 5px;
 }
-
-@media (max-width: 768px) {
-  .challenge-card {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .challenge-image-container {
-    max-height: 250px;
-  }
-}
