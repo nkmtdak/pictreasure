@@ -1,0 +1,545 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.role-mode {
+  color: #FFD700;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+body .admin-header,
+body .admin-footer {
+  background-color: #333333;
+  color: #FFFFFF;
+}
+body .admin-header .user-greeting,
+body .admin-footer .user-greeting {
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+body .admin-header .user-greeting .header-name,
+body .admin-footer .user-greeting .header-name {
+  font-weight: 600;
+}
+body .admin-header .user-greeting .header-name:hover,
+body .admin-footer .user-greeting .header-name:hover {
+  color: #b21500;
+}
+body .admin-header .nav-button,
+body .admin-footer .nav-button {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+body .admin-header .nav-button:hover,
+body .admin-footer .nav-button:hover {
+  background-color: #FFFFFF;
+  color: #333333;
+}
+body .admin-header .nav-button.btn-signup, body .admin-header .nav-button.btn-login, body .admin-header .nav-button.btn-logout,
+body .admin-footer .nav-button.btn-signup,
+body .admin-footer .nav-button.btn-login,
+body .admin-footer .nav-button.btn-logout {
+  background-color: #FFFFFF;
+  color: #333333;
+}
+body .admin-header .nav-button.btn-signup:hover, body .admin-header .nav-button.btn-login:hover, body .admin-header .nav-button.btn-logout:hover,
+body .admin-footer .nav-button.btn-signup:hover,
+body .admin-footer .nav-button.btn-login:hover,
+body .admin-footer .nav-button.btn-logout:hover {
+  background-color: #b21500;
+  color: #FFFFFF;
+}
+
+.challenges-container {
+  padding: 10px;
+}
+.challenges-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.challenges-container .challenge-card {
+  width: 50%;
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.challenges-container .challenge-card .card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.challenges-container .challenge-card h2 {
+  font-size: 1.5em;
+  margin: 15px 0;
+}
+.challenges-container .challenge-card p {
+  color: #666;
+  margin-bottom: 15px;
+}
+.challenges-container .challenge-card .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #b21500;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.challenges-container .challenge-card .btn:hover {
+  background-color: #e6c200;
+}
+.challenges-container .new-challenge-btn {
+  display: block;
+  width: 200px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  background-color: #b21500;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.challenges-container .new-challenge-btn:hover {
+  background-color: #a01300;
+}
+@media (max-width: 768px) {
+  .challenges-container .challenge-card {
+    width: 100%;
+    margin-inline: 0;
+  }
+}
+
+.challenge-container {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background-color: #FFFFFF;
+}
+
+.challenge-image-container {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+  max-height: 380px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background-color: #333333;
+}
+.challenge-image-container .challenge-photo {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+}
+.challenge-image-container .clear-stamp {
+  z-index: 1;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: stamp-appear 0.5s ease-out forwards;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.challenge-status {
+  height: auto;
+  max-height: 100px;
+}
+
+.alert-success {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
+  border: none;
+  color: #8B4513;
+}
+.alert-success .clear-stamp {
+  display: block;
+  max-width: 60px;
+  max-height: 60px;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  margin-right: 5px;
+}
+
+.action-container {
+  background-color: #333;
+  max-width: 600px;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.action-container .btn-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+.edit-button:hover {
+  background-color: #449e48;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+.delete-button:hover {
+  background-color: #f2291a;
+}
+
+.photos-section {
+  padding: 20px;
+  margin-top: 40px;
+}
+.photos-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #b21500;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.photo-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.photo-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-info {
+  margin-top: 10px;
+}
+
+.upload-date,
+.username,
+.similarity {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.similarity {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.username {
+  font-weight: bold;
+  color: #333333;
+}
+
+.upload-date {
+  font-size: 0.8em;
+  color: #333333;
+}
+
+.photo-similarity {
+  padding: 10px;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.photo-upload-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+.photo-upload-section h2 {
+  margin-bottom: 15px;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+.field label {
+  display: block;
+  margin-bottom: 5px;
+}
+.field input[type=file] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#photo-upload-submit {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #b21500;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+#photo-upload-submit:hover {
+  background-color: #a01300;
+  transform: translateY(-2px);
+}
+
+@keyframes stamp-appear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(-20deg);
+  }
+}
+.photo-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+.btn-success:hover {
+  background-color: #24963e;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+.similarity-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.role-mode {
+  font-weight: bold;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+#upload-result,
+#similarity-result {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #F2A900;
+  color: #333333;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+h1 {
+  color: #333333;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(178, 21, 0, 0.2);
+}
+
+h2 {
+  color: #b21500;
+  margin-bottom: 10px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+h2 a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+h2 a:hover {
+  color: #FFD700;
+}
+h2 p {
+  color: #333333;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+h2 .site-header, h2 .site-footer {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #b21500;
+  padding: 15px 10px;
+  transition: background-color 0.3s ease;
+}
+h2 .site-header > .container > p, h2 .site-footer > .container > p {
+  color: #fff;
+}
+h2 .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h2 .container nav {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+h2 .logo-image {
+  display: inline-block;
+  max-width: 200px;
+  width: auto;
+  height: auto;
+}
+@media (max-width: 787px) {
+  h2 header.site-header .logo-image {
+    max-width: 100px;
+  }
+  h2 .hamburger-menu {
+    display: block;
+  }
+  h2 .container nav {
+    justify-content: flex-end;
+  }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li {
+  margin-left: 15px;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-signup, .btn-login {
+  background-color: #FFFFFF;
+  color: #b21500;
+}
+.btn-signup:hover, .btn-login:hover {
+  background-color: #FFF700;
+  color: #333333;
+}
+
+.btn-logout {
+  background-color: #FFFFFF;
+  color: #b21500;
+  border: 2px solid #b21500;
+}
+.btn-logout:hover {
+  background-color: #b21500;
+  color: #FFFFFF;
+}
+
+.nav-button:not(.btn-signup):not(.btn-login):not(.btn-logout) {
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+}
+.nav-button:not(.btn-signup):not(.btn-login):not(.btn-logout):hover {
+  background-color: #FFFFFF;
+  color: #b21500;
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.hamburger-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}/*# sourceMappingURL=application.css.map */

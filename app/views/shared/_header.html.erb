@@ -4,13 +4,24 @@
       <%= link_to root_path, class: 'logo' do %>
         <%= image_tag 'logo.png', alt: 'Pictreasure Logo', class: 'logo-image' %>
       <% end %>
+      
+      <div id="hamburger-menu" class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <ul class="nav-links">
         <% if user_signed_in? %>
           <% if current_user.master? %>
-            <li class="user-greeting "><div class="role-mode" >管理者モード</div>
-            <div class="header-name"><%= current_user.username %>さん</div></li>
+            <li class="user-greeting">
+              <div class="role-mode">管理者モード</div>
+              <div class="header-name"><%= current_user.username %>さん</div>
+            </li>
           <% else %>
-            <li class="user-greeting "><div class="role-mode" >チャレンジャー</div><%= current_user.username %>さん</li>
+            <li class="user-greeting">
+              <div class="role-mode">チャレンジャー</div>
+              <div class="header-name"><%= current_user.username %>さん</div>
+            </li>
           <% end %>
           <li><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-button' %></li>
           <li><%= link_to 'プロフィール編集', edit_user_registration_path, class: 'nav-button' %></li>

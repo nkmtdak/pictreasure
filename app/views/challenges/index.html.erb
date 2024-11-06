@@ -1,6 +1,6 @@
-<div class="challenges-container">
-  <h1>Challenges</h1>
 
+  <h1>Challenges</h1>
+<div class="challenges-container">
 <% @challenges.each do |challenge| %>
   <div class="challenge-card">
     <%= image_tag challenge.image.variant(resize_to_limit: [300, 200]), class: 'card-img-top' if challenge.image.attached? %>
@@ -9,6 +9,7 @@
     <%= link_to 'チャレンジ開始', challenge_path(challenge), class: 'btn' %>
   </div>
 <% end %>
-
+<% if current_user && (current_user.master? || @challenge.user == current_user) %>
   <%= link_to 'チャレンジ作成', new_challenge_path, class: 'new-challenge-btn' %>
+  <% end %>
 </div>

@@ -2,9 +2,9 @@
 @use "variables" as *;
 
 // マスターユーザー用のスタイル
-.role-mode{
-    color:$main-color;
-    font-size:11px;
+.role-mode {
+    color: $main-color;
+    font-size: 11px;
     font-weight: 500;
 }
 
@@ -17,45 +17,35 @@ body .admin-footer {
     margin-right: 15px;
     transition: color 0.3s ease;
     
-    .header-name{
+    .header-name {
         font-weight: 600;
 
-    &:hover {
-        color:$accent-color;
+        &:hover {
+            color: $accent-color;
+        }
     }
-    }
- }
+  }
 
   .nav-button {
-    color: #FFFFFF; // $light-color
-    border-color: #FFFFFF; // $light-color
+    color: $light-color;
+    border-color: $light-color;
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: #FFFFFF; // $light-color
-      color: #333333; // $dark-color
+      background-color: $light-color;
+      color: $dark-color;
     }
 
     &.btn-signup,
     &.btn-login,
     &.btn-logout {
-      background-color: #FFFFFF; // $light-color
-      color: #333333; // $dark-color
+      background-color: $light-color;
+      color: $dark-color;
 
       &:hover {
-        background-color: $accent-color; // $secondary-color
-        color: #FFFFFF; // $light-color
+        background-color: $accent-color;
+        color: $light-color;
       }
     }
   }
 }
-
-.error_explanation{
-    H2{
-        font-size:1.4em;
-        padding:10px;
-        border-radius: 8px;
-        background:#fff;
-    }
-}
-
