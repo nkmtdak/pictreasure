@@ -23,6 +23,15 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+ul, ol {
+  list-style-type: none;
+}
+
+li::marker {
+  display: none;
+  content: none;
+}
+
 .role-mode {
   color: #FFD700;
   font-size: 11px;
@@ -431,20 +440,24 @@ h2 {
   font-size: 1.8em;
   font-weight: 600;
 }
-h2 a {
+
+a {
   text-decoration: none;
   color: inherit;
   transition: color 0.3s ease;
 }
-h2 a:hover {
+a:hover {
   color: #FFD700;
 }
-h2 p {
+
+p {
   color: #333333;
   font-size: 1.1em;
   line-height: 1.5;
 }
-h2 .site-header, h2 .site-footer {
+
+.site-header,
+.site-footer {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -452,61 +465,56 @@ h2 .site-header, h2 .site-footer {
   padding: 15px 10px;
   transition: background-color 0.3s ease;
 }
-h2 .site-header > .container > p, h2 .site-footer > .container > p {
+
+.site-footer .container > p {
   color: #fff;
 }
-h2 .container {
+
+.menu-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.menu-list li {
+  list-style-type: none;
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-h2 .container nav {
+
+.container nav {
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
 }
-h2 .logo-image {
+
+.logo-image {
   display: inline-block;
   max-width: 200px;
   width: auto;
   height: auto;
 }
-@media (max-width: 787px) {
-  h2 header.site-header .logo-image {
-    max-width: 100px;
-  }
-  h2 .hamburger-menu {
-    display: block;
-  }
-  h2 .container nav {
-    justify-content: flex-end;
-  }
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.nav-links li {
-  margin-left: 15px;
-}
 
 .nav-button {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-signup, .btn-login {
+.btn-signup,
+.btn-login {
   background-color: #FFFFFF;
   color: #b21500;
 }
-.btn-signup:hover, .btn-login:hover {
+.btn-signup:hover,
+.btn-login:hover {
   background-color: #FFF700;
   color: #333333;
 }
@@ -535,6 +543,7 @@ h2 .logo-image {
   cursor: pointer;
   padding: 10px;
 }
+
 .hamburger-menu span {
   display: block;
   width: 25px;
@@ -542,4 +551,16 @@ h2 .logo-image {
   margin: 5px 0;
   background-color: #FFFFFF;
   transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 787px) {
+  header.site-header .logo-image {
+    max-width: 100px;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  .container nav {
+    justify-content: flex-end;
+  }
 }/*# sourceMappingURL=application.css.map */
