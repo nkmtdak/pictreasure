@@ -4,22 +4,33 @@
 $border-radius: 8px;
 $transition-duration: 0.3s;
 
-// メインカラー（黄色系）
+$sp-width: 640px;
+$sp-width2: 641px;
+$tab-width: 834px;
+$base-width: 1200px;
+$base-width1200: 1200px;
+$base-width1400: 1400px;
+$base-width1600: 1600px;
 $main-color: #FFD700; // ゴールド（メインカラー）
 $sub-color: #FFF700; // 明るい黄色（サブカラー）
 $body-color: #F2A900; //バタースコッチ（ボデイカラー）
-
-// アクセントカラー（赤系）
-$accent-color: #b21500; // さらなる深い赤（アクセントカラー）
-
-// ニュートラルカラー
-$light-color: #FFFFFF; // 白
-$dark-color: #333333; // 濃いグレー（テキスト用）
+$accent-color: #b21500; // さらなる深い赤
 $light-gray: #E0E0E0; // 明るいグレー
+$dark-color: #333333; // 濃いグレー（テキスト用）
 
-// テキストカラー
-$text-color: $dark-color; // テキスト用の基本色
 
-// ホバー状態の色
-$link-hover-color: color.scale($accent-color, $lightness: -10%);
-
+@mixin tabsp {
+  @media only screen and (max-width: $tab-width) {
+    @content;
+  }
+}
+@mixin tab {
+  @media screen and (min-width: $sp-width2) and (max-width: $tab-width) {
+    @content;
+  }
+}
+@mixin sp {
+  @media only screen and (max-width: $sp-width) {
+    @content;
+  }
+}

@@ -26,11 +26,3 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-ul,ol{
-  list-style-type: none!important;
-}
-
-ul li::marker {
-  display: none!important;
-  content:none!important;
-}

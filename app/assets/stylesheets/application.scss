@@ -1,6 +1,6 @@
 @use "reset";
 @use "variables" as *;
-@use "admin";
+@use "header";
 @use "challenges_index";
 @use "challenge_show";
 
@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: $body-color;
-  color: $text-color;
+  color: $dark-color;
 }
 
 main {
@@ -62,22 +62,19 @@ p {
   transition: background-color $transition-duration ease;
 }
 
-.site-footer .container > p {
+.site-footer p {
   color: #fff;
-
 }
 
 ul.menu-list {
-  display: flex; /* 横並びにするため */
-  justify-content: flex-start; /* 左寄せ */
-  padding: 0; /* パディングをゼロに */
-  margin: 0; /* マージンをゼロに */
-  list-style: none!important; /* マーカーを消す */
-
-  li {
-    margin-right: 10px; /* リストアイテム間のスペース */
-    list-style: none; /* 再度マーカーを消す */
-  }
+    display: flex;
+    justify-content: flex-start;
+    margin: 0; 
+    list-style-type: none;
+    li {
+      margin-right: 10px;
+      list-style: none;
+    }
 }
 
 .container {
@@ -94,13 +91,13 @@ ul.menu-list {
   height: auto;
 }
 
-.nav-button {
-  display: inline-block;
+a.nav-button {
+  display: flex;
   padding: 6px 10px;
   border-radius: $border-radius;
   text-decoration: none;
-  font-weight: bold;
-  transition: background-color $transition-duration ease, color $transition-duration ease;
+  font-size:13px;
+  font-weight: 500;
 }
 
 .btn-signup,
@@ -148,14 +145,4 @@ ul.menu-list {
   margin: 5px 0;
   background-color: $light-color;
   transition: all 0.3s ease-in-out;
-}
-
-@media (max-width: 787px) {
-  header.site-header .logo-image {
-    max-width: 100px;
-  }
-
-  .hamburger-menu {
-    display: block;
-  }
 }

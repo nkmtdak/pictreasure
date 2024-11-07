@@ -5,7 +5,7 @@ import "./photo_upload"
 
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger-menu');
-  const navLinks = document.querySelector('.nav-links');
+  const navLinks = document.querySelector('.menu-links');
 
   hamburger.addEventListener('click', function() {
     navLinks.classList.toggle('active');
