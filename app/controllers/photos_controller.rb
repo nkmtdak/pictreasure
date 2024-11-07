@@ -49,7 +49,7 @@ class PhotosController < ApplicationController
 
   def render_success_turbo_stream
     render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message',
-                                              locals: { message: '写真がアップロードされました。類似度を計算中です。', type: 'success' })
+                                                          locals: { message: '写真がアップロードされました。類似度を計算中です。', type: 'success' })
   end
 
   def render_success_json
@@ -65,7 +65,7 @@ class PhotosController < ApplicationController
 
   def render_error_turbo_stream
     render turbo_stream: turbo_stream.prepend('messages', partial: 'shared/flash_message',
-                                              locals: { message: @photo.errors.full_messages.join(', '), type: 'danger' })
+                                                          locals: { message: @photo.errors.full_messages.join(', '), type: 'danger' })
   end
 
   def render_error_json

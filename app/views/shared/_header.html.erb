@@ -20,7 +20,6 @@
           <div class="header-name"><%= current_user.username %>さん</div>
         </div>
       <% end %>
-      <nav>
       <ul class="menu-list">
         <% if user_signed_in? %>
           <li><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-button' %></li>
@@ -31,6 +30,5 @@
           <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-button btn-login' %></li>
         <% end %>
       </ul>
-    </nav>
   </div>
 </header>

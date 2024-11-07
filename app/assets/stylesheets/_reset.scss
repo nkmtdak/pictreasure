@@ -27,10 +27,10 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 ul,ol{
-  list-style-type: none;
+  list-style-type: none!important;
 }
 
-li::marker {
-  display: none;
-  content:none;
+ul li::marker {
+  display: none!important;
+  content:none!important;
 }

@@ -52,6 +52,8 @@ p {
 
 .site-header,
 .site-footer {
+  display: flex;
+  justify-content: space-between;  
   position: sticky;
   top: 0;
   z-index: 100;
@@ -62,16 +64,19 @@ p {
 
 .site-footer .container > p {
   color: #fff;
+
 }
 
-.menu-list {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+ul.menu-list {
+  display: flex; /* 横並びにするため */
+  justify-content: flex-start; /* 左寄せ */
+  padding: 0; /* パディングをゼロに */
+  margin: 0; /* マージンをゼロに */
+  list-style: none!important; /* マーカーを消す */
 
   li {
-    list-style-type: none;
+    margin-right: 10px; /* リストアイテム間のスペース */
+    list-style: none; /* 再度マーカーを消す */
   }
 }
 
@@ -81,22 +86,17 @@ p {
   align-items: center;
 }
 
-.container nav {
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-between;   
-}
-
 .logo-image {
   display: inline-block;
   max-width: 200px;
   width: auto;
+  max-height: 50px;
   height: auto;
 }
 
 .nav-button {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 6px 10px;
   border-radius: $border-radius;
   text-decoration: none;
   font-weight: bold;
@@ -157,9 +157,5 @@ p {
 
   .hamburger-menu {
     display: block;
-  }
-
-  .container nav {
-    justify-content: flex-end;
   }
 }
