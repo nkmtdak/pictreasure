@@ -1,34 +1,43 @@
 <header class="site-header <%= 'admin-header' if current_user&.master? %>">
-  <div class="container">
-      <%= link_to root_path, class: 'logo' do %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag 'logo.png', alt: 'Pictreasure Logo', class: 'logo-image' %>
       <% end %>
 
-      <div id="hamburger-menu" class="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <% if user_signed_in? %>
-        <div class="user-greeting">
-          <% if current_user.master? %>
-            <div class="role-mode">管理者モード</div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+                <% if current_user.master? %>
+                  <span class="role-mode">管理者モード</span>
+                <% else %>
+                  <span class="role-mode">チャレンジャー</span>
+                <% end %>
+                <span class="header-name"><%= current_user.username %>さん</span>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'プロフィール編集', edit_user_registration_path, class: 'nav-link' %>
+            <li class="nav-item">
+              <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-link' %>
+            </li>
           <% else %>
-            <div class="role-mode">チャレンジャー</div>
+            <li class="nav-item">
+              <%= link_to '新規登録', new_user_registration_path, class: 'nav-link btn btn-outline-primary me-2' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログイン', new_user_session_path, class: 'nav-link btn btn-primary' %>
+            </li>
           <% end %>
-          <div class="header-name"><%= current_user.username %>さん</div>
-        </div>
-      <% end %>
-      <ul class="menu-list">
-        <% if user_signed_in? %>
-          <li><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-button' %></li>
-          <li><%= link_to 'プロフィール編集', edit_user_registration_path, class: 'nav-button' %></li>
-          <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-button btn-logout' %></li>
-        <% else %>
-          <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-button btn-signup' %></li>
-          <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-button btn-login' %></li>
-        <% end %>
-      </ul>
-  </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>

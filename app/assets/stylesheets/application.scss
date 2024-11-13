@@ -3,6 +3,7 @@
 @use "header";
 @use "challenges_index";
 @use "challenge_show";
+@import "bootstrap";
 
 body {
   display: flex;
@@ -48,101 +49,4 @@ p {
   color: $text-color;
   font-size: 1.1em;
   line-height: 1.5;
-}
-
-.site-header,
-.site-footer {
-  display: flex;
-  justify-content: space-between;  
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: $accent-color;
-  padding: 15px 10px;
-  transition: background-color $transition-duration ease;
-}
-
-.site-footer p {
-  color: #fff;
-}
-
-ul.menu-list {
-    display: flex;
-    justify-content: flex-start;
-    margin: 0; 
-    list-style-type: none;
-    li {
-      margin-right: 10px;
-      list-style: none;
-    }
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-image {
-  display: inline-block;
-  max-width: 200px;
-  width: auto;
-  max-height: 50px;
-  height: auto;
-}
-
-a.nav-button {
-  display: flex;
-  padding: 6px 10px;
-  border-radius: $border-radius;
-  text-decoration: none;
-  font-size:13px;
-  font-weight: 500;
-}
-
-.btn-signup,
-.btn-login {
-  background-color: $light-color;
-  color: $accent-color;
-
-  &:hover {
-    background-color: $sub-color;
-    color: $text-color;
-  }
-}
-
-.btn-logout {
-  background-color: $light-color;
-  color: $accent-color;
-  border: 2px solid $accent-color;
-
-  &:hover {
-    background-color: $accent-color;
-    color: $light-color;
-  }
-}
-
-.nav-button:not(.btn-signup):not(.btn-login):not(.btn-logout) {
-  color: $light-color;
-  border: 2px solid $light-color;
-
-  &:hover {
-    background-color: $light-color;
-    color: $accent-color;
-  }
-}
-
-.hamburger-menu {
-  display: none;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.hamburger-menu span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: $light-color;
-  transition: all 0.3s ease-in-out;
 }
