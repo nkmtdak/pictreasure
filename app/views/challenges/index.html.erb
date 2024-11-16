@@ -9,7 +9,4 @@
     <%= link_to 'チャレンジ開始', challenge_path(challenge), class: 'btn' %>
   </div>
 <% end %>
-<% if current_user && (current_user.master? || @challenge.user == current_user) %>
-  <%= link_to 'チャレンジ作成', new_challenge_path, class: 'new-challenge-btn' %>
-  <% end %>
 </div>

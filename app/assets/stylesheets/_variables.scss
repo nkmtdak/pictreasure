@@ -11,24 +11,31 @@ $base-width: 1200px;
 $base-width1200: 1200px;
 $base-width1400: 1400px;
 $base-width1600: 1600px;
-$main-color: #FFD700; // ゴールド（メインカラー）
-$sub-color: #FFF700; // 明るい黄色（サブカラー）
-$body-color: #F2A900; //バタースコッチ（ボデイカラー）
-$accent-color: #b21500; // さらなる深い赤
-$light-gray: #E0E0E0; // 明るいグレー
-$dark-color: #333333; // 濃いグレー（テキスト用）
+$main-color: #FFD700; 
+$sub-color: #FFF700; 
+$body-color: #F2A900;
+$accent-color: #b21500;
+$light-gray: #E0E0E0; 
+$light-color: #f0f0f0;
+$dark-color: #333333;
 
+// ブレイクポイントの定義
+$tab-width: 1023px;
+$sp-width: 767px;
+$sp-width2: 768px;
 
 @mixin tabsp {
   @media only screen and (max-width: $tab-width) {
     @content;
   }
 }
+
 @mixin tab {
   @media screen and (min-width: $sp-width2) and (max-width: $tab-width) {
     @content;
   }
 }
+
 @mixin sp {
   @media only screen and (max-width: $sp-width) {
     @content;

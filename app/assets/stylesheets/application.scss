@@ -1,11 +1,10 @@
+@use "bootstrap" as *;
 @use "reset";
 @use "variables" as *;
-@use "header";
 @use "challenges_index";
 @use "challenge_show";
-@import "bootstrap";
 
-body {
+body.main_body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -49,4 +48,11 @@ p {
   color: $text-color;
   font-size: 1.1em;
   line-height: 1.5;
+}
+
+.nav-link{
+  margin-right:4px;
+  @include tabsp{
+    margin-right:0;
+  }
 }
