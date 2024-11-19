@@ -8,7 +8,7 @@ body.main_body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: $custom-main-color;
+  background-color: $main-color;
   color: $dark-color;
 }
 
@@ -24,11 +24,11 @@ h1 {
   font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 4px rgba($custom-accent-color, 0.2);
+  text-shadow: 2px 2px 4px rgba($accent-color, 0.2);
 }
 
 h2 {
-  color: $custom-accent-color;
+  color: $accent-color;
   margin-bottom: 10px;
   font-size: 1.8em;
   font-weight: 600;
