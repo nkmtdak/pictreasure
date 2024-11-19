@@ -43,6 +43,11 @@ ja:
       update_needs_confirmation: "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
       updated: "アカウント情報を変更しました。"
       updated_but_not_signed_in: "アカウント情報を変更しました。変更によりパスワードが変更されたため、再度ログインしてください。"
+      edit:
+        title: "%{resource}編集"
+        waiting_confirmation: "現在、次のメールアドレスの確認待ちです: %{email}"
+    shared:
+      minimum_password_length: "（最低%{count}文字）"
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
@@ -56,6 +61,7 @@ ja:
       already_confirmed: "は既に登録済みです。ログインしてください。"
       confirmation_period_expired: "の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。"
       expired: "の有効期限が切れました。新しくリクエストしてください。"
+      minimum_password_length: "は最低%{count}文字以上必要です"
       not_found: "は見つかりませんでした。"
       not_locked: "はロックされていません。"
       not_saved:
