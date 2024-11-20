@@ -4,27 +4,25 @@
 $border-radius: 8px;
 $transition-duration: 0.3s;
 
-$sp-width: 640px;
-$sp-width2: 641px;
-$tab-width: 834px;
+// ブレイクポイントの定義
+$sp-width: 767px;
+$sp-width2: 768px;
+$tab-width: 1023px;
 $base-width: 1200px;
 $base-width1200: 1200px;
 $base-width1400: 1400px;
 $base-width1600: 1600px;
-$main-color: #FFD700; 
-$sub-color: #FFF700; 
+
+// カラー定義
 $main-color: #F2A900;
+$sub-color: #FFF700; 
 $accent-color: #b21500;
 $light-gray: #E0E0E0; 
 $light-color: #f0f0f0;
 $text-color: #333333;
 $dark-color: #333333;
 
-// ブレイクポイントの定義
-$tab-width: 1023px;
-$sp-width: 767px;
-$sp-width2: 768px;
-
+// ミックスインの定義（変更なし）
 @mixin tabsp {
   @media only screen and (max-width: $tab-width) {
     @content;
