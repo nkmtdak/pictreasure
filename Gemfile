@@ -74,4 +74,4 @@ gem 'phashion'
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
 gem 'rails-i18n', '~> 7.0.0'
-gem 'bootstrap', '~> 5.1.0'
+gem 'bootstrap', '~> 5.3.0'
