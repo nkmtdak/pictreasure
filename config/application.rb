@@ -1,7 +1,6 @@
 require_relative "boot"
 require "rails/all"
 require 'aws-sdk-s3'
-require 'uglifier'
 
 Bundler.require(*Rails.groups)
 
@@ -25,8 +24,5 @@ module Pictreasure
 
     # アセットのバージョンを設定
     config.assets.version = "1.0"
-
-    # JavaScriptの圧縮にUglifierを使用し、ES6構文を許可
-    config.assets.js_compressor = Uglifier.new(harmony: true)
   end
 end
