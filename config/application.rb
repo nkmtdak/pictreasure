@@ -24,5 +24,17 @@ module Pictreasure
 
     # アセットのバージョンを設定
     config.assets.version = "1.0"
+
+    # アセットプリコンパイル時の初期化設定（必要に応じて）
+    config.assets.initialize_on_precompile = false
+
+    # AWS S3の設定（環境変数から取得）
+    config.active_storage.service = :amazon
+
+    # 環境変数からAWS設定を取得（credentialsやdotenvなどで設定）
+    config.x.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+    config.x.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+    config.x.aws_region = ENV['AWS_REGION']
+    config.x.s3_bucket_name = ENV['S3_BUCKET_NAME']
   end
 end
