@@ -2,4 +2,3 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./photo_upload"
-import "bootstrap"
