@@ -47,6 +47,38 @@ p {
   color: $text-color;
   font-size: 1.1em;
   line-height: 1.5;
+
+  .site-header {
+    background-color: #f8f9fa;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-collapse {
+    display: none; /* 初期状態では非表示 */
+  }
+  
+  .navbar-collapse.active {
+    display: block; /* メニューが開いたときに表示 */
+  }
+  
+  .navbar-toggler {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+  }
 }
 
 @media (max-width: 991px) {

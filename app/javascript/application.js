@@ -2,3 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./photo_upload"
+
+//ハンバーガーメニュー
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  var navbarCollapse = document.getElementById('navbarNav');
+  navbarCollapse.classList.toggle('active');
+});
