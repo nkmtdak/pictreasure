@@ -4,7 +4,11 @@ import "controllers"
 import "./photo_upload"
 
 //ハンバーガーメニュー
-document.getElementById('menu-toggle').addEventListener('click', function() {
-  var navbarCollapse = document.getElementById('navbarNav');
-  navbarCollapse.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuList = document.querySelector('.menu-list');
+
+  menuToggle.addEventListener('click', function() {
+    menuList.classList.toggle('active'); // activeクラスをトグル
+  });
 });

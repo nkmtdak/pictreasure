@@ -1,14 +1,16 @@
 @use "reset";
-@use "variables" as *;
+@use "mixin" as *;
 @use "challenges_index";
 @use "challenge_show";
 
+// 基本設定
 body.main_body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: $main-color;
   color: $dark-color;
+  margin: 0; // マージンをリセット
 }
 
 main {
@@ -17,104 +19,93 @@ main {
   padding: 10px;
 }
 
+// タイトルスタイル
 h1 {
   color: #333;
   font-size: 2.5em;
   font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 4px rgba($accent-color, 0.2);
+  text-shadow: 2px 2px 4px rgba($acc-color, 0.2);
 }
 
 h2 {
-  color: $accent-color;
+  color: $acc-color;
   margin-bottom: 10px;
   font-size: 1.8em;
   font-weight: 600;
 }
 
+// リンクスタイル
 a {
   text-decoration: none;
   color: inherit;
   transition: color $transition-duration ease;
 
   &:hover {
-    color: $main-color;
+    color: $main-color; // ホバー時の色変更
   }
 }
 
-p {
-  color: $text-color;
-  font-size: 1.1em;
-  line-height: 1.5;
-
-  .site-header {
-    background-color: #f8f9fa;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-collapse {
-    display: none; /* 初期状態では非表示 */
-  }
-  
-  .navbar-collapse.active {
-    display: block; /* メニューが開いたときに表示 */
-  }
-  
-  .navbar-toggler {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: #333;
-  }
+// ヘッダー設定
+.site-header {
+  background-color: $acc-color;
+  padding: 10px;
 }
 
-@media (max-width: 991px) {
-  .navbar-nav {
-    .nav-item {
-      border-bottom: 1px solid #eee;
-      
-      &:last-child {
-        border-bottom: none;
-      }
-      
-      .nav-link {
-        display: block;
-        padding: 0.75rem 1rem;
-        text-decoration: none;
-        background: none;
-        border: none;
-        border-radius: 0;
-        color: inherit;
-        
-        &.btn {
-          text-align: left;
-          padding: 0.75rem 1rem;
-          background: none;
-          border: none;
-          border-radius: 0;
-          
-          &:hover, &:focus {
-            background-color: rgba(0, 0, 0, 0.05);
-          }
-        }
-        
-        &:hover, &:focus {
-          background-color: rgba(0, 0, 0, 0.05);
-        }
-      }
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-image {
+  max-height: 50px; // ロゴの最大高さ
+}
+
+#menu-toggle {
+  z-index: 100;
+  position: fixed; // 固定位置
+  top: 10px; // 上からの距離
+  right: 10px; // 右からの距離
+  display: block;
+  width: 50px; // ボタンの幅
+  height: 50px; // ボタンの高さ
+  padding: 10px;
+  background: #fff; // 背景色
+  border-radius: 5px; // ボタンの角を丸くする（オプション）
+  cursor: pointer; // カーソルをポインタに変更
+}
+
+.bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin-bottom: 5px;
+  background-color: #333; // バーの色
+}
+
+.menu-list {
+  display: none; // 初期状態は非表示
+}
+
+.menu-list.active {
+  display: flex; // activeクラスが追加されたら表示
+  flex-direction: column; // 縦並びにする
+  position: absolute; // 必要に応じて位置調整
+  top: calc(100% + 10px); // ヘッダーの下に表示（パディング調整）
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9); // 半透明の白背景
+  padding: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: inherit; // リンクの色を継承
+    transition: color $transition-duration ease;
+
+    &:hover {
+      color: $main-color; // ホバー時の色変更
     }
-  }
 }
