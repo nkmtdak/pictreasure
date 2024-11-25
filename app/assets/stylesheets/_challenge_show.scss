@@ -107,7 +107,7 @@
     margin-bottom: 20px;
     font-size: 1.5em;
     font-weight: 700;
-    color: $accent-color;
+    color: $acc-color;
   }
 }
 
@@ -194,7 +194,7 @@
 #photo-upload-submit {
   display: inline-block;
   padding: 10px 20px;
-  background-color: $accent-color;
+  background-color: $acc-color;
   color: $light-color;
   text-decoration: none;
   border-radius: $border-radius;
@@ -204,7 +204,7 @@
   transition: background-color $transition-duration ease, transform $transition-duration ease;
 
   &:hover {
-    background-color: color.scale($accent-color, $lightness: -10%);
+    background-color: color.scale($acc-color, $lightness: -10%);
     transform: translateY(-2px);
   }
 }
