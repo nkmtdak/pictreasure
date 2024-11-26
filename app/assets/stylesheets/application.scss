@@ -50,7 +50,8 @@ a {
 // ヘッダー設定
 .site-header {
   background-color: $acc-color;
-  padding: 10px;
+  padding-block: 10px;
+  padding-inline: 10px 50px;
   position: relative;
 }
 
