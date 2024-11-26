@@ -6,7 +6,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.js_compressor = nil
   #config.assets.js_compressor = :terser
 
@@ -42,4 +42,3 @@ config.assets.css_compressor = nil
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 end
-
