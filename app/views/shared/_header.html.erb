@@ -1,5 +1,5 @@
 <header class="site-header <%= 'admin-header' if current_user&.master? %>">
-  <div class="container">
+  <div class="h-container">
     <div class="logo">
       <a href="#">
         <%= image_tag "logo.png", alt: "PICTREASURE", class: "logo-image" %>
@@ -8,10 +8,9 @@
       
     <div class="auth-buttons">
   <% if user_signed_in? %>
-
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "auth-link" %>
   <% else %>
-    <%= link_to "サインイン", new_user_registration_path, class: "auth-link" %>
+    <%= link_to "新規登録", new_user_registration_path, class: "auth-link" %>
     <%= link_to "ログイン", new_user_session_path, class: "auth-link" %>
   <% end %>
 </div>
