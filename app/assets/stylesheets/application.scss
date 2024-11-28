@@ -48,22 +48,24 @@ a {
 }
 
 // ヘッダー設定
-.site-header {
+header {
   background-color: $acc-color;
   padding: 10px;
   position: relative;
-}
 
-.site-header .container {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-right:40px;
 }
 
+}
 .logo{
   max-width:250px;
 }
+
+
 
 .logo-image {
   width:100%;
