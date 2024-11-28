@@ -62,7 +62,7 @@ header {
 
 }
 .logo{
-  max-width:250px;
+  max-width:200px;
 }
 
 
@@ -77,10 +77,11 @@ header {
     flex-direction: column;
   }
   .auth-link {
+    display:inline-block;
     font-size: 12px;
     margin-bottom: 3px; // リンク間のスペースを調整
   }
-  
+
 
 #menu-toggle {
   z-index: 100;
