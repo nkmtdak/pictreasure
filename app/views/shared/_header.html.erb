@@ -6,13 +6,17 @@
       </a>
     </div>
       
-    <div class="auth-button">
-      <% if user_signed_in? %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-      <% else %>
-        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-      <% end %>
-    </div>
+    <div class="auth-buttons">
+  <% if user_signed_in? %>
+
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "auth-link" %>
+  <% else %>
+    <%= link_to "サインイン", new_user_registration_path, class: "auth-link" %>
+    <%= link_to "ログイン", new_user_session_path, class: "auth-link" %>
+  <% end %>
+</div>
+
+
 
 
       <div id="menu-toggle">

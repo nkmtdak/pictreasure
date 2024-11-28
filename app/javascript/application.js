@@ -12,3 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     menuList.classList.toggle('active'); // activeクラスをトグル
   });
 });
+
+window.onload = function () {
+  console.log("JavaScriptが正しく読み込まれました！");
+};

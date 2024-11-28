@@ -50,15 +50,15 @@ a {
 // ヘッダー設定
 .site-header {
   background-color: $acc-color;
-  padding-block: 10px;
-  padding-inline: 10px 50px;
+  padding: 10px;
   position: relative;
 }
 
-.container {
+.site-header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right:40px;
 }
 
 .logo{
@@ -68,6 +68,17 @@ a {
 .logo-image {
   width:100%;
   max-height: 50px; // ロゴの最大高さ
+}
+
+.auth {
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  &-link {
+    font-size: 12px;
+    margin-bottom: 3px; // リンク間のスペースを調整
+  }
 }
 
 #menu-toggle {
