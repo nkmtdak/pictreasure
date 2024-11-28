@@ -46,12 +46,20 @@ ja:
       edit:
         title: "%{resource}編集"
         waiting_confirmation: "現在、次のメールアドレスの確認待ちです: %{email}"
-    shared:
-      minimum_password_length: "（最低%{count}文字）"
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
       already_signed_out: "既にログアウト済みです。"
+      new:
+        log_in: "ログイン"
+        email: "メールアドレス"
+        password: "パスワード"
+        remember_me: "ログインを記憶する"
+    shared:
+      links:
+        sign_up: "アカウント登録"
+        forgot_your_password: "パスワードを忘れましたか？"
+      minimum_password_length: "（最低%{count}文字）"
     unlocks:
       send_instructions: "アカウントのロック解除方法を数分以内にメールでご連絡します。"
       send_paranoid_instructions: "アカウントが存在する場合、アカウントのロック解除方法を数分以内にメールでご連絡します。"
