@@ -72,16 +72,15 @@ header {
   max-height: 50px; // ロゴの最大高さ
 }
 
-.auth {
-  &-buttons {
+.auth-buttons {
     display: flex;
     flex-direction: column;
   }
-  &-link {
+  .auth-link {
     font-size: 12px;
     margin-bottom: 3px; // リンク間のスペースを調整
   }
-}
+  
 
 #menu-toggle {
   z-index: 100;
