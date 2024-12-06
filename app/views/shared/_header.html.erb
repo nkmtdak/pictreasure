@@ -35,7 +35,7 @@
   <li class="menu-item"><%= link_to 'About', challenges_path, class: 'nav-link' %></li>
   <li class="menu-item"><%= link_to 'チャレンジ作成', new_challenge_path, class: 'nav-link' %></li>
   <li class="menu-item"><%= link_to 'チャレンジ一覧', challenges_path, class: 'nav-link' %></li>
-  <li class="menu-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
+  <li class="menu-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
 </ul>
   </div>
 </header>
