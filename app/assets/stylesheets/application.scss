@@ -48,12 +48,12 @@ a {
 }
 
 // ヘッダー設定
-.site-header {
+.site-header,.site-footer {
   background-color: $acc-color;
   padding: 10px;
   position: relative;
 }
-.site-header.admin-header{
+.admin-header,.admin-footer{
   background:$dark-color;
 }
 .h-container {

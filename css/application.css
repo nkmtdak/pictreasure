@@ -435,13 +435,13 @@ a:hover {
   color: #F2A900;
 }
 
-.site-header {
+.site-header, .site-footer {
   background-color: #b21500;
   padding: 10px;
   position: relative;
 }
 
-.site-header.admin-header {
+.admin-header, .admin-footer {
   background: #333333;
 }
 
