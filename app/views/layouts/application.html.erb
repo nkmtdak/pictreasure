@@ -9,9 +9,8 @@
     <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <%= javascript_importmap_tags %>
-    
     <!-- リサイズ用のJavaScriptファイルを追加 -->
-    <script src="/path/to/image_resizer.js" defer></script> <!-- パスは適宜変更してください -->
+    <script src="/assets/image_resizer.js" defer></script>
 </head>
 <body class="main_body">
     <%= render 'shared/header' %>
