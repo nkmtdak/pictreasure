@@ -1,7 +1,7 @@
 @use "reset";
 @use "mixin" as *;
-@use "challenges_index";
-@use "challenge_show";
+@use "_index";
+@use "_show";
 
 // 基本設定
 body.main_body {

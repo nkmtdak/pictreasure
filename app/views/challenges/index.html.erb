@@ -1,5 +1,45 @@
 
   <h1>Challenges</h1>
+  <div class='pictresure-aboout-contents'>
+    <h2 class='title'>
+      PICTREASUREの遊び方
+    </h2>
+    <ul class='about-lists'>
+      <li class='list'>
+        <%= image_tag "about01.jpg", class:"list-pict" %>
+        <span class='about-list-number'>1</span>
+        <h3 class='about-list-title'>
+          チャレンジを選ぼう!
+        </h3>
+        <p class='about-list-description'>
+          チャレンジを選択するとお題の写真がでてくるので、
+          街に出てお題と同じ写真を取りにいこう！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "shibuya02.jpg", class:"list-pict" %>
+        <span class='about-list-number'>2</span>
+        <h3 class='about-list-tile'>
+
+        </h3>
+        <p class='reason-list-description'>
+          お題と同じような写真がとれたら写真をアップロードを押すと
+          類似度をチェックするよ！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "shibuya01.jpg", class:"list-pict" %>
+        <span class='about-list-number'>3</span>
+        <h3 class='about-list-title'>
+          チャレンジクリアーを目指そう！
+        </h3>
+        <p class='about-list-description'>
+          類似度が70%以上でそのチャレンジはクリアーになるよ。
+          何度でも挑戦できるので全てのチャレンジクリアーを目指そう!
+        </p>
+      </li>
+    </ul>
+  </div>
 <div class="challenges-container">
 <% @challenges.each do |challenge| %>
   <div class="challenge-card">
