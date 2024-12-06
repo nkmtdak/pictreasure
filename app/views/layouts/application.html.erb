@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+<head>
     <title>Pictreasure</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,13 +9,18 @@
     <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <%= javascript_importmap_tags %>
-  </head>
-  <body class="main_body">
+    
+    <!-- リサイズ用のJavaScriptファイルを追加 -->
+    <script src="/path/to/image_resizer.js" defer></script> <!-- パスは適宜変更してください -->
+</head>
+<body class="main_body">
     <%= render 'shared/header' %>
     <main>
-    <%= render 'shared/flash_messages' %>
-      <%= yield %>
+        <%= render 'shared/flash_messages' %>
+        <%= yield %>
+        <!-- 画像アップロード用のinput -->
+        <input type="file" id="imageUpload" accept="image/*" />
     </main>
     <%= render 'shared/footer' %>
-  </body>
+</body>
 </html>
