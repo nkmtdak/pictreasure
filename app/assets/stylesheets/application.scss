@@ -112,6 +112,8 @@ a {
 .menu-list.active {
   display: flex; // activeクラスが追加されたら表示
   flex-direction: column; // 縦並びにする
+  z-index:999;
+  width:280px;
   position: absolute; // 必要に応じて位置調整
   top:100%; // ヘッダーの下に表示
   left: 0;

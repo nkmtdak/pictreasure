@@ -502,6 +502,8 @@ a:hover {
 .menu-list.active {
   display: flex;
   flex-direction: column;
+  z-index: 999;
+  width: 280px;
   position: absolute;
   top: 100%;
   left: 0;
