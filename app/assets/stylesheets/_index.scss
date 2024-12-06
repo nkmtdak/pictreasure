@@ -1,6 +1,10 @@
 @use "sass:color";
 @use "mixin" as *;
 
+h2.about-title{
+  border-bottom:1px solid $acc-color;
+}
+
 ul.about-lists{
     display:flex;
     justify-content: space-around;
@@ -29,12 +33,18 @@ ul.about-lists{
     aspect-ratio: 4/3;
     object-fit: cover;
   }
+  .about-list-title{
+    font-weight:600;
+    color:$acc-color;
+  }
 
 .about-list-number{
   position: absolute;
   top:0;
   left:0;
-  display:block;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   width:50px;
   height: 50px;
   padding:5px;

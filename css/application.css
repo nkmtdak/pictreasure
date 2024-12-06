@@ -23,6 +23,10 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+h2.about-title {
+  border-bottom: 1px solid #b21500;
+}
+
 ul.about-lists {
   display: flex;
   justify-content: space-around;
@@ -57,11 +61,18 @@ img.list-pict {
   object-fit: cover;
 }
 
+.about-list-title {
+  font-weight: 600;
+  color: #b21500;
+}
+
 .about-list-number {
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   height: 50px;
   padding: 5px;
