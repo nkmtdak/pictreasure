@@ -107,6 +107,17 @@ a {
 
 .menu-list {
   display: none; // 初期状態は非表示
+  transition: all 0.3s ease;
+  @include sp{
+    width: 100%;
+    top: 50px;
+    left: 0;
+    right: 0;
+  }
+}
+.menu-item {
+text-align: center;
+padding: 10px;
 }
 
 .menu-list.active {
@@ -120,10 +131,6 @@ a {
   right: 0;
   background-color: rgba(255, 255, 255, 0.9); // 半透明の白背景
   list-style: none;
-  .menu-item{
-    text-align: center;
-    padding:10px;
-  }
 }
 
 .nav-link {
