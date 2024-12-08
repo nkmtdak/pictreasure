@@ -1,12 +1,16 @@
 // image_resizer.js
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('imageUpload').addEventListener('change', function(event) {
+  const imageUpload = document.getElementById('imageUpload');
+  if (imageUpload) {
+    imageUpload.addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
-          resizeAndUploadImage(file);
+        resizeAndUploadImage(file);
       }
-  });
+    });
+  }
+});
 
   function resizeAndUploadImage(file) {
       const img = new Image();
@@ -59,4 +63,3 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
   }
-});
