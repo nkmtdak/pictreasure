@@ -3,7 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "./photo_upload"
 
-
 //ハンバーガーメニュー
 document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menu-toggle');
